@@ -8,13 +8,8 @@ Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://gith
 
 Checkout repository in project root and run from project root:
 
-Install node version used for this starter
 ```
-(cd ./vue-starter && nvm install)
-```
-
-```
-node vue-starter/setup-vue-environment.js
+vue-starter/setup-environment.sh <project-name>
 ```
 
 After installation the vue-starter directory can be removed
