@@ -71,7 +71,10 @@ intallStarterVueApplication() {
 
   pushd "${starter_dir}"
   rm -r "${build_dir}/src"
-  cp -r src "${build_dir}/"
+  cp -r src \
+    scripts \
+    vite-plugins \
+    "${build_dir}/"
   cp .eslintrc.json \
     .nvmrc \
     .prettierrc.json \
