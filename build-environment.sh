@@ -56,6 +56,9 @@ installStarterDependencies() {
 
       npm install --save \
       vue-router
+
+      npx npm-check-updates -u
+      npm update
     popd
 }
 
