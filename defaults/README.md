@@ -1,4 +1,4 @@
-# vue-starter
+# {{product-name}}
 
 Install specific android app versions easily
 
@@ -79,14 +79,8 @@ npm update
 
 run docker locally
 ```
-docker build -t vue-starter .
-docker run -dp 8080:80 --name vue-starter vue-starter
+docker build -t {{project-name}} .
+docker run -dp 8080:80 --name {{product-name}} {{product-name}}
 ```
 
 open browser at [http://localhost:8080](http://localhost:8080)
-
-
-## Buy us a coffee
-
-https://www.buymeacoffee.com/rethinc
-

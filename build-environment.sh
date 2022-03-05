@@ -7,31 +7,31 @@ set -o nounset
 dir=$(cd -P -- "$(dirname -- "$0")" && pwd -P)
 
 main() {
-  local project_name="${1:-}"
-  if [ -z "${project_name}" ]; then
-    echo "USAGE $0 <project-name>"
+  local product_name="${1:-}"
+  if [ -z "${product_name}" ]; then
+    echo "USAGE $0 <product-name>"
     exit 1
   fi
   local build_dir="${dir}/build"
   local starter_dir="$(dirname -- "${build_dir}")"
   rm -rf "${build_dir}"
 
-  createNewVueProject "${build_dir}" "${project_name}"
+  createNewVueProject "${build_dir}" "${product_name}"
   installStarterDependencies "${build_dir}"
   intallStarterVueApplication "${build_dir}" "${starter_dir}"
-  addDefaults "${build_dir}" "${starter_dir}"
+  addDefaults "${build_dir}" "${starter_dir}" "${product_name}"
 }
 
 createNewVueProject() {
   local build_dir="${1}"
-  local project_name="${2}"
+  local product_name="${2}"
 
   mkdir -p "${build_dir}"
   pushd "${build_dir}"
-  npm init vite@latest "${project_name}" -- --template vue-ts
-  rm -r "${build_dir}/${project_name}"/.vscode
-  mv "${build_dir}/${project_name}"/{*,.[^.]*} "${build_dir}"
-  rm -r "${project_name}"
+  npm init vite@latest "${product_name}" -- --template vue-ts
+  rm -r "${build_dir}/${product_name}"/.vscode
+  mv "${build_dir}/${product_name}"/{*,.[^.]*} "${build_dir}"
+  rm -r "${product_name}"
   npm install
   popd
 }
@@ -95,8 +95,10 @@ intallStarterVueApplication() {
 addDefaults() {
     local build_dir="${1}"
     local starter_dir="${2}"
+    local product_name="${3}"
 
     cp -r "${starter_dir}/defaults"/{*,.[^.]*} "${build_dir}"
+    sed -i -e "s/{{product-name}}/${product_name}/g" "${build_dir}/README.md"
 }
 
 main "$@"
