@@ -16,6 +16,7 @@ main() {
   rm -rf "${build_dir}"
 
   createNewVueProject "${build_dir}" "${project_name}"
+  installStarterDependencies "${build_dir}"
 }
 
 createNewVueProject() {
@@ -28,7 +29,34 @@ createNewVueProject() {
     rm -r "${build_dir}/${project_name}"/.vscode
     mv "${build_dir}/${project_name}"/{*,.[^.]*} "${build_dir}"
     rm -r "${project_name}"
+    npm install
   popd
+}
+
+installStarterDependencies() {
+    local build_dir="${1}"
+
+    pushd "${build_dir}"
+      npm install --save-dev \
+      eslint \
+      @typescript-eslint/parser \
+      @typescript-eslint/eslint-plugin \
+      eslint-plugin-vue \
+      vue-eslint-parser \
+      prettier \
+      eslint-config-prettier \
+      eslint-plugin-prettier \
+      jest \
+      ts-jest \
+      @types/jest \
+      sass \
+      ts-node \
+      npm-check-updates \
+      svgo
+
+      npm install --save \
+      vue-router
+    popd
 }
 
 main "$@"
