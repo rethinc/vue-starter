@@ -19,6 +19,7 @@ main() {
   createNewVueProject "${build_dir}" "${project_name}"
   installStarterDependencies "${build_dir}"
   intallStarterVueApplication "${build_dir}" "${starter_dir}"
+  addDefaults "${build_dir}" "${starter_dir}"
 }
 
 createNewVueProject() {
@@ -89,6 +90,13 @@ intallStarterVueApplication() {
 
     node './build-scripts/extendPackageJson.mjs' "${build_dir}/package.json"
   popd
+}
+
+addDefaults() {
+    local build_dir="${1}"
+    local starter_dir="${2}"
+
+    cp -r "${starter_dir}/defaults"/{*,.[^.]*} "${build_dir}"
 }
 
 main "$@"
