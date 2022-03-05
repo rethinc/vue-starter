@@ -16,7 +16,6 @@ main() {
   rm -rf "${build_dir}"
 
   createNewVueProject "${build_dir}" "${project_name}"
-  copyAndRemoveBuild "${build_dir}"
 }
 
 createNewVueProject() {
@@ -29,12 +28,6 @@ createNewVueProject() {
     mv "${build_dir}/${project_name}"/{*,.[^.]*} "${build_dir}"
     rm -r "${project_name}"
   popd
-}
-
-copyAndRemoveBuild() {
-  local build_dir="${1}"
-    mv "${build_dir}"/{*,.[^.]*} "${PWD}"
-    rm -r "${build_dir}"
 }
 
 main "$@"
