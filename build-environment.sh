@@ -25,6 +25,7 @@ createNewVueProject() {
   mkdir -p "${build_dir}"
   pushd "${build_dir}"
     npm init vite@latest "${project_name}" -- --template vue-ts
+    rm -r "${build_dir}/${project_name}"/.vscode
     mv "${build_dir}/${project_name}"/{*,.[^.]*} "${build_dir}"
     rm -r "${project_name}"
   popd
