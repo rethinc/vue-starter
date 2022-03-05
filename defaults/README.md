@@ -1,9 +1,5 @@
 # {{product-name}}
 
-Install specific android app versions easily
-
-https://reinstall.rethinc.ch
-
 ## Development
 
 Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
