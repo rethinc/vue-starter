@@ -2,10 +2,12 @@
   "name": "vue-starter",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-icons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generate-icons.ts"
   },
   "dependencies": {
     "vue": "^3.2.25",
@@ -13,6 +15,7 @@
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
+    "@types/svgo": "^2.6.2",
     "@typescript-eslint/eslint-plugin": "^5.13.0",
     "@typescript-eslint/parser": "^5.13.0",
     "@vitejs/plugin-vue": "^2.2.0",

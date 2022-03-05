@@ -54,7 +54,8 @@ installStarterDependencies() {
     sass \
     ts-node \
     npm-check-updates \
-    svgo
+    svgo \
+    @types/svgo
 
   npm install --save \
     vue-router
