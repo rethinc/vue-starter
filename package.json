@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
+    "format": "eslint . --fix",
+    "lint": "eslint .",
+    "test": "jest",
     "generate-icons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generate-icons.ts"
   },
   "dependencies": {

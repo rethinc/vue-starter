@@ -10,7 +10,10 @@ Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://gith
 ### Manual Installation
 Checkout repository in project root and run from project root:
 
+`<npm-version>` can be found in vue-starter/.nvmrc
+
 ```
+nvm install <npm-version>
 vue-starter/build-environment.sh <project-name>
 cp -r vue-starter/build/{*,.[^.]*} .
 rm -rf vue-starter

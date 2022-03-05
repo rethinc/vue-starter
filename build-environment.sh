@@ -75,6 +75,7 @@ intallStarterVueApplication() {
     scripts \
     vite-plugins \
     "${build_dir}/"
+
   cp .eslintrc.json \
     .nvmrc \
     .prettierrc.json \
@@ -83,6 +84,8 @@ intallStarterVueApplication() {
     tsconfig.json \
     vite.config.ts \
     "${build_dir}/"
+
+    node './build-scripts/extendPackageJson.mjs' "${build_dir}/package.json"
   popd
 }
 

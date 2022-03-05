@@ -22,7 +22,7 @@
   },
   "overrides": [
     {
-      "files": ["*.vue","*.ts", "*.js"]
+      "files": ["*.vue","*.ts", "*.js", "*.mjs"]
     }
   ],
   "ignorePatterns": ["node_modules", "dist", "coverage"]
