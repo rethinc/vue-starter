@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:vue/vue3-recommended",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "overrides": [
+    {
+      "files": ["*.vue","*.ts", "*.js"]
+    }
+  ],
+  "ignorePatterns": ["node_modules", "dist", "coverage"]
+}

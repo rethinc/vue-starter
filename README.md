@@ -16,4 +16,39 @@ cp -r vue-starter/build/{*,.[^.]*} .
 rm -rf vue-starter
 ```
 
-After installation the vue-starter directory can be removed
+## Development
+
+Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Install node with version used in project
+```
+nvm install
+```
+
+Run app locally in development mode
+```
+npm run dev
+```
+open browser at [http://localhost:3000](http://localhost:3000)
+
+Build app locally (bundle will be created in `/dist` folder)
+```
+npm run build
+```
+
+### Dependencies
+
+Check for updated dependencies
+```
+npx npm-check-updates
+```
+
+Update version in package.json
+```
+npx npm-check-updates -u
+```
+
+Updated modules and package-lock file
+```
+npm update
+```
