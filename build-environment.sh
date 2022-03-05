@@ -74,6 +74,7 @@ intallStarterVueApplication() {
   cp -r src \
     scripts \
     vite-plugins \
+    view-examples \
     "${build_dir}/"
 
   cp .eslintrc.json \
@@ -83,6 +84,7 @@ intallStarterVueApplication() {
     jest.config.json \
     tsconfig.json \
     vite.config.ts \
+    vite.view-examples.config.ts \
     "${build_dir}/"
 
     node './build-scripts/extendPackageJson.mjs' "${build_dir}/package.json"
