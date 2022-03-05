@@ -6,6 +6,9 @@ Setups a re:thinc opinionated vue environment for web client development
 
 Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
 
+### Remote Installation
+
+curl https://raw.githubusercontent.com/rethinc/vue-starter/main/install-remotly.sh | bash -s arg1 arg2
 
 ### Manual Installation
 Checkout repository in project root and run from project root:
