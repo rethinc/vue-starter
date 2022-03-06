@@ -8,7 +8,9 @@ Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://gith
 
 ### Remote Installation
 
+```
 curl https://raw.githubusercontent.com/rethinc/vue-starter/main/install-remotly.sh | bash -s <product-name>
+```
 
 ### Manual Installation
 Checkout repository in project root and run from project root:
