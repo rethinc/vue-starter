@@ -1,13 +1,13 @@
-import checkmark from '@/assets/icons/colorizable/checkmark.svg?raw'
+import Checkmark from '@/assets/icons/colorizable/checkmark.svg?raw'
 
-import bell_checkmark from '@/assets/icons/original/bell-checkmark.svg?raw'
+import BellCheckmark from '@/assets/icons/original/bell-checkmark.svg?raw'
 
 export enum IconColorizable {
   Checkmark = 'IconColorizable_Checkmark',
 }
 
 export enum IconOriginal {
-  Bell_checkmark = 'IconOriginal_Bell_checkmark',
+  BellCheckmark = 'IconOriginal_BellCheckmark',
 }
 
 export type IconType = IconColorizable | IconOriginal
@@ -15,9 +15,9 @@ export type IconType = IconColorizable | IconOriginal
 export const iconByType = (iconType: IconType): string => {
   switch (iconType) {
     case IconColorizable.Checkmark:
-      return checkmark
+      return Checkmark
 
-    case IconOriginal.Bell_checkmark:
-      return bell_checkmark
+    case IconOriginal.BellCheckmark:
+      return BellCheckmark
   }
 }

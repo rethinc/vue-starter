@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as path from 'path'
 import { exec } from 'child_process'
+import { iconNameFromFile } from './iconName'
 
 const projectRootDirectory = process.cwd()
 
@@ -28,14 +29,11 @@ const processIcons = (
   let enumContent = ''
   let switchContent = ''
   files.forEach((fileName) => {
-    const iconName = fileName
-      .substring(0, fileName.lastIndexOf('.'))
-      .replace(/[^a-zA-Z0-9]/g, '_')
-    const enumCaseName = iconName[0].toUpperCase() + iconName.slice(1)
+    const iconName = iconNameFromFile(fileName)
     importContent += `import ${iconName} from '${importPath}/${fileName}?raw'\n`
-    enumContent += `${enumCaseName} = '${enumName}_${enumCaseName}',`
+    enumContent += `${iconName} = '${enumName}_${iconName}',`
     switchContent += `
-    case ${enumName}.${enumCaseName}:
+    case ${enumName}.${iconName}:
       return ${iconName}
     `
   })

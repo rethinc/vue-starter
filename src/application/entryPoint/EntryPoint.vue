@@ -8,7 +8,7 @@
   </p>
   <p>
     You can now
-    <iconView :type="IconOriginal.Bell_checkmark" class="style-text" /> change
+    <iconView :type="IconOriginal.BellCheckmark" class="style-text" /> change
     the entry point or start with your first use case by adding it in the
     "application" directory
   </p>

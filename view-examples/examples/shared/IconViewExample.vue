@@ -30,12 +30,12 @@
   <p>Sizes can be defined on icon element or its parent</p>
   <div style="display: flex">
     <icon-view
-      :type="IconOriginal.Bell_checkmark"
+      :type="IconOriginal.BellCheckmark"
       style="width: 200px; height: 200px"
     />
 
     <div style="width: 200px; height: 200px; border: 1px solid green">
-      <icon-view :type="IconOriginal.Bell_checkmark" />
+      <icon-view :type="IconOriginal.BellCheckmark" />
     </div>
   </div>
 
@@ -44,13 +44,13 @@
   <p class="text-example">
     <icon-view :type="IconColorizable.Checkmark" class="style-text" />
     sed do eiusmod tempor incididunt ut labore et dolore
-    <icon-view :type="IconOriginal.Bell_checkmark" class="style-text" /> magna
+    <icon-view :type="IconOriginal.BellCheckmark" class="style-text" /> magna
     aliqua.
   </p>
   <p class="text-example-larger">
     <icon-view :type="IconColorizable.Checkmark" class="style-text" />
     sed do eiusmod tempor incididunt ut labore et dolore
-    <icon-view :type="IconOriginal.Bell_checkmark" class="style-text" /> magna
+    <icon-view :type="IconOriginal.BellCheckmark" class="style-text" /> magna
     aliqua.
   </p>
 </template>
