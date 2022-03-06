@@ -3,6 +3,6 @@ import appConfig from './vite.config'
 
 export default defineConfig({
   ...appConfig,
-  root: 'view-examples',
+  root: 'viewExamples',
   publicDir: '../public',
 })

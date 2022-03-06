@@ -13,8 +13,8 @@ packageJson['type'] = 'module'
 packageJson['scripts']['format'] = 'eslint . --fix'
 packageJson['scripts']['lint'] = 'eslint .'
 packageJson['scripts']['test'] = 'jest'
-packageJson['scripts']['view-examples'] =
-  'vite -c vite.view-examples.config.ts --port 3001'
+packageJson['scripts']['viewExamples'] =
+  'vite -c vite.viewExamples.config.ts --port 3001'
 packageJson['scripts']['generate-icons'] =
   'node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generate-icons.ts'
 

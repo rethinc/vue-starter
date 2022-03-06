@@ -10,7 +10,7 @@
     "format": "eslint . --fix",
     "lint": "eslint .",
     "test": "jest",
-    "view-examples": "vite -c vite.view-examples.config.ts --port 3001",
+    "viewExamples": "vite -c vite.viewExamples.config.ts --port 3001",
     "generate-icons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generate-icons.ts"
   },
   "dependencies": {

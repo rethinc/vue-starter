@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import SelectedExampleIFrameView from './view-examples-content/SelectedExampleIFrameView.vue'
+import SelectedExampleIFrameView from './viewExamplesContent/SelectedExampleIFrameView.vue'
 import { examples } from './examples'
 
 const routes: RouteRecordRaw[] = []
