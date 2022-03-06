@@ -15,7 +15,7 @@ packageJson['scripts']['lint'] = 'eslint .'
 packageJson['scripts']['test'] = 'jest'
 packageJson['scripts']['viewExamples'] =
   'vite -c vite.viewExamples.config.ts --port 3001'
-packageJson['scripts']['generate-icons'] =
+packageJson['scripts']['generateIcons'] =
   'node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generate-icons.ts'
 
 const extendedPackageJsonContent = JSON.stringify(packageJson, null, 1)

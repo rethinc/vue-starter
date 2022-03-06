@@ -51,7 +51,7 @@ Place colorizable (color will be defined in css) icons in the `src/assets/icons/
 
 After icon changes generate the icon provider file with the command:
 ```
-npm run generate-icons
+npm run generateIcons
 ```
 
 ### Dependencies

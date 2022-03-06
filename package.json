@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "test": "jest",
     "viewExamples": "vite -c vite.viewExamples.config.ts --port 3001",
-    "generate-icons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generate-icons.ts"
+    "generateIcons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generateIcons.ts"
   },
   "dependencies": {
     "vue": "^3.2.25",
