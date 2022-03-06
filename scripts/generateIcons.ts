@@ -14,6 +14,11 @@ const iconOriginalDirectory = path.resolve(
   'src/assets/icons/original'
 )
 
+const iconProviderFile = path.resolve(
+  projectRootDirectory,
+  'src/application/shared/icons/icons.ts'
+)
+
 interface ProcessedIcons {
   importContent: string
   enumContent: string
@@ -50,11 +55,6 @@ const processedOriginalIcons = processIcons(
   fs.readdirSync(iconOriginalDirectory),
   '@/assets/icons/original',
   'IconOriginal'
-)
-
-const iconProviderFile = path.resolve(
-  projectRootDirectory,
-  'src/application/shared/icons/IconProvider.ts'
 )
 
 fs.mkdirSync(path.dirname(iconProviderFile), { recursive: true })

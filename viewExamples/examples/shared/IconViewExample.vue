@@ -58,10 +58,7 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue'
 import IconView from '@/application/shared/icons/IconView.vue'
-import {
-  IconColorizable,
-  IconOriginal,
-} from '@/application/shared/icons/IconProvider'
+import { IconColorizable, IconOriginal } from '@/application/shared/icons/icons'
 
 export default defineComponent({
   name: 'IconViewExample',

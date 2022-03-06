@@ -5,7 +5,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { iconByType, IconType } from './IconProvider'
+import { iconByType, IconType } from './icons'
 
 export default defineComponent({
   name: 'IconView',
