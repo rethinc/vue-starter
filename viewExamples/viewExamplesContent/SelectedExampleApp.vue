@@ -45,3 +45,7 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="scss">
+@import '../../src/assets/styles/global.scss';
+</style>

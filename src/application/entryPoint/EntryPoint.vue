@@ -31,8 +31,10 @@ export default defineComponent({
 })
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../../assets/styles/colors';
+
 p {
-  color: #333;
+  color: $primary;
 }
 </style>

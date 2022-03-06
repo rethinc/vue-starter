@@ -1,0 +1,29 @@
+$largefont: 1.23rem;
+$fontSize: 1rem;
+$smallfont: 0.78rem;
+
+$fontWeightNormal: 400;
+$fontWeightSemiBold: 600;
+$fontWeightBold: 700;
+
+$fontFamily: 'Source Sans Pro', sans-serif;
+
+$lineHeight: 1.44;
+
+@mixin typography-default {
+  h1, h2 {
+    font-size: $largefont;
+    font-weight: $fontWeightBold;
+  }
+  h3 {
+    font-size: $fontSize;
+    font-weight: $fontWeightBold;
+  }
+  p {
+    font-size: $fontSize;
+    font-weight: $fontWeightNormal;
+    b {
+      font-weight: $fontWeightSemiBold;
+    }
+  }
+}
