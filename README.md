@@ -8,7 +8,7 @@ Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://gith
 
 ### Remote Installation
 
-curl https://raw.githubusercontent.com/rethinc/vue-starter/main/install-remotly.sh | bash -s arg1 arg2
+curl https://raw.githubusercontent.com/rethinc/vue-starter/main/install-remotly.sh | bash -s <product-name>
 
 ### Manual Installation
 Checkout repository in project root and run from project root:
@@ -17,7 +17,7 @@ Checkout repository in project root and run from project root:
 
 ```
 nvm install <npm-version>
-vue-starter/build-environment.sh <project-name>
+vue-starter/build-environment.sh <product-name>
 cp -r vue-starter/build/{*,.[^.]*} .
 rm -rf vue-starter
 ```

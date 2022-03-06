@@ -10,7 +10,11 @@ main() {
     echo "USAGE $0 <product-name>"
     exit 1
   fi
-  echo "Will install vue-starter soon... ${product_name}"
+
+  git clone --depth 1 git@github.com:rethinc/vue-starter.git
+  vue-starter/build-environment.sh "${product_name}"
+  cp -r vue-starter/build/{*,.[^.]*} .
+  rm -rf vue-starter
 }
 
 main "$@"
