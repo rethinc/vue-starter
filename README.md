@@ -63,7 +63,7 @@ Add view examples component in `view-examples/examples/shared` and register it i
 
 Run view examples app
 ```
-npm run view-examples
+npm run viewExamples
 ```
 open browser at [http://localhost:3001](http://localhost:3001)
 
