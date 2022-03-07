@@ -4,7 +4,7 @@ Setups a re:thinc opinionated vue environment for web client development
 
 ## Usage
 
-Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
+Make sure node with version >= 17.6.0 is installed on your system. You can use nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating) for easily installing node version.
 
 ### Remote Installation
 
