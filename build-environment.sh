@@ -13,20 +13,20 @@ main() {
     exit 1
   fi
   local build_dir="${dir}/build"
-  local starter_dir="$(dirname -- "${build_dir}")"
+  local vue_application_dir="${dir}/vue-application"
   rm -rf "${build_dir}"
   mkdir "${build_dir}"
 
   createNewVueApplication "${build_dir}" "${product_name}"
-  installStarterVueApplication "${build_dir}" "${starter_dir}"
-  addDefaults "${build_dir}" "${starter_dir}" "${product_name}"
+  installStarterVueApplication "${build_dir}" "${vue_application_dir}" "${product_name}"
 }
 
 createNewVueApplication() {
   local build_dir="${1}"
   local product_name="${2}"
 
-  node "${dir}/build-scripts/generatePackageJson.mjs" "${build_dir}/package.json" "${product_name}"
+  cp "${dir}/package.template.json" "${build_dir}/package.json"
+  sed -i -e "s/{{product-name}}/${product_name}/g" "${build_dir}/package.json"
 
   pushd "${build_dir}"
 
@@ -59,34 +59,10 @@ createNewVueApplication() {
 
 installStarterVueApplication() {
   local build_dir="${1}"
-  local starter_dir="${2}"
-
-  pushd "${starter_dir}"
-  cp -r src \
-    scripts \
-    vitePlugins \
-    viewExamples \
-    "${build_dir}/"
-
-  cp .eslintrc.json \
-    .nvmrc \
-    .prettierrc.json \
-    index.html \
-    jest.config.json \
-    tsconfig.json \
-    vite.config.ts \
-    vite.viewExamples.config.ts \
-    "${build_dir}/"
-  popd
-}
-
-addDefaults() {
-    local build_dir="${1}"
-    local starter_dir="${2}"
-    local product_name="${3}"
-
-    cp -r "${starter_dir}/defaults"/{*,.[^.]*} "${build_dir}"
-    sed -i -e "s/{{product-name}}/${product_name}/g" "${build_dir}/README.md"
+  local vue_application_dir="${2}"
+  local product_name="${3}"
+  cp -rn "${vue_application_dir}"/{*,.[^.]*} "${build_dir}/"
+  sed -i -e "s/{{product-name}}/${product_name}/g" "${build_dir}/README.md"
 }
 
 main "$@"
