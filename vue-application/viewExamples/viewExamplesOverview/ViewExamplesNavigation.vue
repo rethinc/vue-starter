@@ -19,7 +19,6 @@ import { examples } from '../examples'
 
 export default defineComponent({
   name: 'ViewExamplesNavigation',
-  emits: ['update:selectedExample'],
   setup() {
     return {
       examples,
