@@ -75,7 +75,7 @@ npm update
 
 run docker locally
 ```
-docker build -t {{project-name}} .
+docker build -t {{product-name}} .
 docker run -dp 8080:80 --name {{product-name}} {{product-name}}
 ```
 

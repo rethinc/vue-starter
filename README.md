@@ -99,8 +99,8 @@ npm update
 
 run docker locally
 ```
-docker build -t {{project-name}} .
-docker run -dp 8080:80 --name my-project my-project
+docker build -t vue-starter .
+docker run -dp 8080:80 --name vue-starter vue-starter
 ```
 
 open browser at [http://localhost:8080](http://localhost:8080)

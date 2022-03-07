@@ -15,32 +15,25 @@ main() {
   local build_dir="${dir}/build"
   local starter_dir="$(dirname -- "${build_dir}")"
   rm -rf "${build_dir}"
+  mkdir "${build_dir}"
 
-  createNewVueProject "${build_dir}" "${product_name}"
-  installStarterDependencies "${build_dir}"
-  intallStarterVueApplication "${build_dir}" "${starter_dir}"
+  createNewVueApplication "${build_dir}" "${product_name}"
+  installStarterVueApplication "${build_dir}" "${starter_dir}"
   addDefaults "${build_dir}" "${starter_dir}" "${product_name}"
 }
 
-createNewVueProject() {
+createNewVueApplication() {
   local build_dir="${1}"
   local product_name="${2}"
 
-  mkdir -p "${build_dir}"
-  pushd "${build_dir}"
-  npm init vite@latest "${product_name}" -- --template vue-ts
-  rm -r "${build_dir}/${product_name}"/.vscode
-  mv "${build_dir}/${product_name}"/{*,.[^.]*} "${build_dir}"
-  rm -r "${product_name}"
-  npm install
-  popd
-}
-
-installStarterDependencies() {
-  local build_dir="${1}"
+  node "${dir}/build-scripts/generatePackageJson.mjs" "${build_dir}/package.json" "${product_name}"
 
   pushd "${build_dir}"
+
   npm install --save-dev \
+    vite \
+    @vitejs/plugin-vue \
+    vue-tsc \
     eslint \
     @typescript-eslint/parser \
     @typescript-eslint/eslint-plugin \
@@ -59,19 +52,16 @@ installStarterDependencies() {
     @types/svgo
 
   npm install --save \
+    vue \
     vue-router
-
-  npx npm-check-updates -u
-  npm update
   popd
 }
 
-intallStarterVueApplication() {
+installStarterVueApplication() {
   local build_dir="${1}"
   local starter_dir="${2}"
 
   pushd "${starter_dir}"
-  rm -r "${build_dir}/src"
   cp -r src \
     scripts \
     vitePlugins \
@@ -87,8 +77,6 @@ intallStarterVueApplication() {
     vite.config.ts \
     vite.viewExamples.config.ts \
     "${build_dir}/"
-
-    node './build-scripts/extendPackageJson.mjs' "${build_dir}/package.json"
   popd
 }
 
