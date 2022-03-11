@@ -44,6 +44,7 @@ createNewVueApplication() {
     eslint-plugin-prettier \
     jest \
     ts-jest \
+    @vue/vue3-jest \
     @types/jest \
     sass \
     ts-node \
