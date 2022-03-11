@@ -48,8 +48,7 @@ createNewVueApplication() {
     sass \
     ts-node \
     npm-check-updates \
-    svgo \
-    @types/svgo
+    svgo
 
   npm install --save \
     vue \
