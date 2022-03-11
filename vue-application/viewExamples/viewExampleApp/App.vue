@@ -1,14 +1,12 @@
 <template>
-  <ViewExample />
+  <RouterView />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ViewExample from '../application/viewExample/ViewExample.vue'
 
 export default defineComponent({
   name: 'App',
-  components: { ViewExample },
 })
 </script>
 

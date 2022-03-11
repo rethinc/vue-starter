@@ -1,5 +1,5 @@
-import { defineComponent } from 'vue'
 import { createExampleNode, findExampleByPath } from './queryExamples'
+import { createExample } from './queryExamples.test.factories'
 
 describe('queryExamples', () => {
   describe('findExampleByPath', () => {
@@ -11,7 +11,7 @@ describe('queryExamples', () => {
 
       const example = findExampleByPath(
         [exampleNode],
-        'exampleNode/ExampleComponent'
+        '/exampleNode/ExampleComponent'
       )
 
       expect(example).toBe(expectedExample)
@@ -23,7 +23,7 @@ describe('queryExamples', () => {
       })
       const example = findExampleByPath(
         [exampleNode],
-        'exampleNode/ExampleComponent'
+        '/exampleNode/ExampleComponent'
       )
 
       expect(example).toBeUndefined()
@@ -35,7 +35,7 @@ describe('queryExamples', () => {
       })
       const example = findExampleByPath(
         [exampleNode],
-        'exampleNode/ExampleComponent'
+        '/exampleNode/ExampleComponent'
       )
 
       expect(example).toBeUndefined()
@@ -53,15 +53,10 @@ describe('queryExamples', () => {
 
       const example = findExampleByPath(
         [exampleNode],
-        'nodeLevel1/nodeLevel2/ExampleComponent'
+        '/nodeLevel1/nodeLevel2/ExampleComponent'
       )
 
       expect(example).toBe(expectedExample)
-    })
-
-    const createExample = (name = 'exampleName') => ({
-      name,
-      component: defineComponent({}),
     })
   })
 })

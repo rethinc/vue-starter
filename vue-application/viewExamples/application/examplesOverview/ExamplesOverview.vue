@@ -1,7 +1,7 @@
 <template>
   <div class="view-examples-overview">
     <NavigationView class="navigation" />
-    <router-view />
+    <RouterView />
   </div>
 </template>
 

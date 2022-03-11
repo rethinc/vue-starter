@@ -27,11 +27,11 @@ export const findExampleByPath = (
   exampleNodes: ExampleNode[],
   path: string
 ): Example | undefined => {
-  const pathSegments = path.split('/')
+  const pathSegments = path.split('/').filter((segment) => segment.length > 0)
   return findExampleByPathSegments(exampleNodes, pathSegments)
 }
 
-export const findExampleByPathSegments = (
+const findExampleByPathSegments = (
   exampleNodes: ExampleNode[],
   pathSegments: string[]
 ): Example | undefined => {

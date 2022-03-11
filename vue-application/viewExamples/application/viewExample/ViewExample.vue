@@ -1,46 +1,26 @@
 <template>
-  <SelectedExampleView
-    v-if="selectedExample"
-    :selected-example="selectedExample"
-  />
+  <component :is="exampleComponent" v-if="exampleComponent" />
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
-import SelectedExampleView from './SelectedExampleView.vue'
-import { SelectedExample } from './SelectedExample'
-
-import {
-  createExampleViewMountedMessage,
-  createExampleViewUnmountedMessage,
-  ViewExamplesMessage,
-} from './ViewExamplesMessage'
+import { computed, defineComponent } from 'vue'
+import { useRoute } from 'vue-router'
+import { findExampleByPath } from '../../queryExamples'
+import { exampleNodes } from '../../examples'
 
 export default defineComponent({
   name: 'ViewExample',
-  components: { SelectedExampleView },
   setup() {
-    const selectedExample = ref<SelectedExample>()
-
-    const messageEventListener = (event: MessageEvent<ViewExamplesMessage>) => {
-      const eventData = event.data
-      if (eventData.type === 'SelectedExampleMessage') {
-        selectedExample.value = eventData.selectedExample
-      }
-    }
-
-    onMounted(() => {
-      window.addEventListener('message', messageEventListener)
-      window.parent.postMessage(createExampleViewMountedMessage())
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener('message', messageEventListener)
-      window.parent.postMessage(createExampleViewUnmountedMessage())
-    })
-
+    const route = useRoute()
     return {
-      selectedExample,
+      exampleComponent: computed(() => {
+        const examplePath = route.query.examplePath as string
+        const example = findExampleByPath(exampleNodes, examplePath)
+        if (!example) {
+          return undefined
+        }
+        return example.component
+      }),
     }
   },
 })

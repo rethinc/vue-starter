@@ -1,22 +1,12 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import SelectedExampleIFrameView from './viewExample/SelectedExampleIFrameView.vue'
-import { examples } from '../examples'
+import { exampleNodes } from '../examples'
+import { createExampleRoutes } from './createExampleRoutes'
 
-const routes: RouteRecordRaw[] = []
+const exampleRoutes: RouteRecordRaw[] = createExampleRoutes(exampleNodes)
 
-examples.forEach((exampleComponents, path) => {
-  exampleComponents.forEach((example) => {
-    routes.push({
-      path: `/${path}/${example.name}`,
-      component: SelectedExampleIFrameView,
-      props: { selectedExample: { path, name: example.name } },
-    })
-  })
-})
-
-routes.push({ path: '', redirect: routes[0].path })
+exampleRoutes.push({ path: '/', redirect: exampleRoutes[0].path })
 
 export const viewExamplesRouter = createRouter({
   history: createWebHistory(),
-  routes: routes,
+  routes: exampleRoutes,
 })
