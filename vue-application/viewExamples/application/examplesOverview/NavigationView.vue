@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { examples, exampleNodes } from '../../examples'
+import { exampleNodes } from '../../examples'
 import NavigationViewExampleNode from './NavigationViewExampleNode.vue'
 
 export default defineComponent({
@@ -19,7 +19,6 @@ export default defineComponent({
 
   setup() {
     return {
-      examples,
       exampleNodes,
     }
   },
