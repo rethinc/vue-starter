@@ -1,62 +1,67 @@
 import { defineComponent } from 'vue'
-import {
-  createExampleNode,
-  createExampleRootNode,
-  ExampleRootNode,
-  findExampleByPath,
-} from './queryExamples'
+import { createExampleNode, findExampleByPath } from './queryExamples'
 
 describe('queryExamples', () => {
-  describe('findByPath', () => {
-    const expectedExample = {
-      name: 'ExampleComponent',
-      component: defineComponent({}),
-    }
-
+  describe('findExampleByPath', () => {
     it('should return example when found in path', () => {
-      const exampleRootNode: ExampleRootNode = createExampleRootNode({
+      const expectedExample = createExample('ExampleComponent')
+      const exampleNode = createExampleNode('exampleNode', {
         examples: [expectedExample],
       })
 
-      const example = findExampleByPath(exampleRootNode, 'ExampleComponent')
+      const example = findExampleByPath(
+        [exampleNode],
+        'exampleNode/ExampleComponent'
+      )
 
       expect(example).toBe(expectedExample)
     })
 
-    it('should return undefined when component not found in path', () => {
-      const exampleRootNode: ExampleRootNode = createExampleRootNode()
+    it('should return undefined when example node not found', () => {
+      const exampleNode = createExampleNode('otherNode', {
+        examples: [createExample('OtherComponent')],
+      })
+      const example = findExampleByPath(
+        [exampleNode],
+        'exampleNode/ExampleComponent'
+      )
 
-      const example = findExampleByPath(exampleRootNode, 'ExampleComponent')
+      expect(example).toBeUndefined()
+    })
+
+    it('should return undefined when example not found in example node', () => {
+      const exampleNode = createExampleNode('exampleNode', {
+        examples: [createExample('OtherComponent')],
+      })
+      const example = findExampleByPath(
+        [exampleNode],
+        'exampleNode/ExampleComponent'
+      )
 
       expect(example).toBeUndefined()
     })
 
     it('should return nested example when found in path', () => {
-      const exampleRootNode: ExampleRootNode = createExampleRootNode({
+      const expectedExample = createExample('ExampleComponent')
+      const exampleNode = createExampleNode('nodeLevel1', {
         nodes: [
-          createExampleNode('exampleNode', { examples: [expectedExample] }),
+          createExampleNode('nodeLevel2', {
+            examples: [expectedExample],
+          }),
         ],
       })
 
       const example = findExampleByPath(
-        exampleRootNode,
-        'exampleNode/ExampleComponent'
+        [exampleNode],
+        'nodeLevel1/nodeLevel2/ExampleComponent'
       )
 
       expect(example).toBe(expectedExample)
     })
 
-    it('should return undefined when nested example not found in path', () => {
-      const exampleRootNode: ExampleRootNode = createExampleRootNode({
-        nodes: [createExampleNode('exampleNode')],
-      })
-
-      const example = findExampleByPath(
-        exampleRootNode,
-        'exampleNode/ExampleComponent'
-      )
-
-      expect(example).toBeUndefined()
+    const createExample = (name = 'exampleName') => ({
+      name,
+      component: defineComponent({}),
     })
   })
 })

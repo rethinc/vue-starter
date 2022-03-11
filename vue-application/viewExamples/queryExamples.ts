@@ -1,10 +1,5 @@
 import { Component } from 'vue'
 
-export interface ExampleRootNode {
-  examples: Example[]
-  nodes: ExampleNode[]
-}
-
 export interface ExampleNode {
   name: string
   examples: Example[]
@@ -16,19 +11,9 @@ export interface Example {
   component: Component
 }
 
-export const createExampleRootNode = (
-  overrides: Partial<ExampleRootNode> = {}
-): ExampleRootNode => {
-  return {
-    nodes: [],
-    examples: [],
-    ...overrides,
-  }
-}
-
 export const createExampleNode = (
   name: string,
-  overrides: Partial<ExampleRootNode> = {}
+  overrides: Partial<ExampleNode> = {}
 ): ExampleNode => {
   return {
     name,
@@ -39,19 +24,29 @@ export const createExampleNode = (
 }
 
 export const findExampleByPath = (
-  exampleNode: ExampleRootNode | ExampleNode,
+  exampleNodes: ExampleNode[],
   path: string
 ): Example | undefined => {
   const pathSegments = path.split('/')
-  if (pathSegments.length > 1) {
-    const childNodeName = pathSegments.shift()
-    const childNode = exampleNode.nodes.find(
-      (exampleNode: ExampleNode) => exampleNode.name === childNodeName
-    )
-    if (!childNode) {
-      return undefined
-    }
-    return findExampleByPath(childNode, pathSegments.join('/'))
+  return findExampleByPathSegments(exampleNodes, pathSegments)
+}
+
+export const findExampleByPathSegments = (
+  exampleNodes: ExampleNode[],
+  pathSegments: string[]
+): Example | undefined => {
+  const nodeName = pathSegments.shift()
+  const foundNode = exampleNodes.find(
+    (exampleNode: ExampleNode) => exampleNode.name === nodeName
+  )
+  if (!foundNode) {
+    return undefined
   }
-  return exampleNode.examples.find((example) => example.name === path)
+  if (pathSegments.length === 1) {
+    const exampleName = pathSegments.shift()
+    return foundNode.examples.find((example) => {
+      return example.name === exampleName
+    })
+  }
+  return findExampleByPathSegments(foundNode.nodes, pathSegments)
 }
