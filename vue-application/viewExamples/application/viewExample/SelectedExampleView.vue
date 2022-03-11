@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { examples } from '../examples'
+import { examples } from '../../examples'
 import { SelectedExample } from './SelectedExample'
 
 export default defineComponent({

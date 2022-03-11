@@ -1,15 +1,15 @@
 <template>
-  <ViewExamplesOverview />
+  <ExamplesOverview />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ViewExamplesOverview from './viewExamplesOverview/ViewExamplesOverview.vue'
+import ExamplesOverview from './application/examplesOverview/ExamplesOverview.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    ViewExamplesOverview,
+    ExamplesOverview,
   },
   setup() {
     return {}

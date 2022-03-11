@@ -1,5 +1,5 @@
 <template>
-  <ul class="view-examples-navigation">
+  <ul class="navigation">
     <li v-for="[path, pathExamples] in examples" :key="path" class="title">
       {{ path }}
       <ul>
@@ -15,10 +15,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { examples } from '../examples'
+import { examples } from '../../examples'
 
 export default defineComponent({
-  name: 'ViewExamplesNavigation',
+  name: 'NavigationView',
   setup() {
     return {
       examples,
@@ -34,7 +34,7 @@ li {
   list-style: none;
 }
 
-.view-examples-navigation {
+.navigation {
   background-color: salmon;
   padding: 0;
   margin: 0;

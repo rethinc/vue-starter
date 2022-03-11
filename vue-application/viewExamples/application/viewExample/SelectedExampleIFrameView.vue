@@ -2,7 +2,7 @@
   <iframe
     ref="exampleIFrame"
     class="selected-example-i-frame-view"
-    src="/viewExamplesContent/"
+    src="/viewExampleApp/"
   />
 </template>
 

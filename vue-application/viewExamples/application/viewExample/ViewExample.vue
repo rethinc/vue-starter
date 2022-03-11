@@ -17,7 +17,7 @@ import {
 } from './ViewExamplesMessage'
 
 export default defineComponent({
-  name: 'App',
+  name: 'ViewExample',
   components: { SelectedExampleView },
   setup() {
     const selectedExample = ref<SelectedExample>()
@@ -45,7 +45,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style lang="scss">
-@import '../../src/assets/styles/global.scss';
-</style>
