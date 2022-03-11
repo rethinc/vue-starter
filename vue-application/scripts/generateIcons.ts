@@ -7,14 +7,14 @@ const projectRootDirectory = process.cwd()
 
 const iconColorizableDirectory = path.resolve(
   projectRootDirectory,
-  'src/assets/icons/colorizable'
+  'src/application/shared/icons/assets/svg-colorizable'
 )
 const iconOriginalDirectory = path.resolve(
   projectRootDirectory,
-  'src/assets/icons/original'
+  'src/application/shared/icons/assets/svg-original'
 )
 
-const iconProviderFile = path.resolve(
+const iconsSourceFilePath = path.resolve(
   projectRootDirectory,
   'src/application/shared/icons/icons.ts'
 )
@@ -57,9 +57,9 @@ const processedOriginalIcons = processIcons(
   'IconOriginal'
 )
 
-fs.mkdirSync(path.dirname(iconProviderFile), { recursive: true })
+fs.mkdirSync(path.dirname(iconsSourceFilePath), { recursive: true })
 fs.writeFileSync(
-  iconProviderFile,
+  iconsSourceFilePath,
   `
     ${processedColorizableIcons.importContent}
     ${processedOriginalIcons.importContent}
@@ -83,4 +83,4 @@ fs.writeFileSync(
   `
 )
 
-exec(`npx prettier --write "${iconProviderFile}"`)
+exec(`npx prettier --write "${iconsSourceFilePath}"`)

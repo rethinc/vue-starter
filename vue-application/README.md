@@ -47,7 +47,7 @@ open browser at [http://localhost:3001](http://localhost:3001)
 
 ### SVG Icons
 
-Place colorizable (color will be defined in css) icons in the `src/assets/icons/colorizable` and others in `src/assets/icons/regular`
+Place colorizable (color will be defined in css) icons in the `src/application/shared/icons/assets/svg-colorizable` and others in `src/application/shared/icons/assets/svg-original`
 
 After icon changes generate the icon provider file with the command:
 ```
