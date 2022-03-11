@@ -47,13 +47,13 @@ const processIcons = (
 
 const processedColorizableIcons = processIcons(
   fs.readdirSync(iconColorizableDirectory),
-  '@/assets/icons/colorizable',
+  '@/application/shared/icons/assets/svg-colorizable',
   'IconColorizable'
 )
 
 const processedOriginalIcons = processIcons(
   fs.readdirSync(iconOriginalDirectory),
-  '@/assets/icons/original',
+  '@/application/shared/icons/assets/svg-original',
   'IconOriginal'
 )
 
