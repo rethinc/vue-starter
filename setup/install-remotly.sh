@@ -24,7 +24,7 @@ main() {
   trap "rm -rf \"${download_folder}\"" EXIT
   download "https://github.com/rethinc/vue-starter.git" "${download_folder}"
 
-  "${download_folder}/setup/install.sh" "${download_folder}/vue-application" "${dir}"  "${product_name}"
+  "${download_folder}/setup/install.sh" "${download_folder}/vue-application" "${dir}" "${product_name}"
 }
 
 download() {
