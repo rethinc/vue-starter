@@ -1,4 +1,4 @@
-# {{product-name}}
+# {{productName}}
 
 ## Development
 
@@ -75,8 +75,8 @@ npm update
 
 run docker locally
 ```
-docker build -t {{product-name}} .
-docker run -dp 8080:80 --name {{product-name}} {{product-name}}
+docker build -t {{productName}} .
+docker run -dp 8080:80 --name {{productName}} {{productName}}
 ```
 
 open browser at [http://localhost:8080](http://localhost:8080)
