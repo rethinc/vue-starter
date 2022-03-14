@@ -20,13 +20,11 @@ main() {
     exit 1
   fi
 
-  local product_folder="${dir}/${product_name}"
-
   local download_folder=$(mktemp -d)
   trap "rm -rf \"${download_folder}\"" EXIT
   download "https://github.com/rethinc/vue-starter.git" "${download_folder}"
 
-  "${download_folder}/setup/install.sh" "${download_folder}/vue-application" "${product_folder}" 
+  "${download_folder}/setup/install.sh" "${download_folder}/vue-application" "${dir}"  "${product_name}"
 }
 
 download() {
