@@ -8,7 +8,11 @@ export const pluginIconColorizable = (): PluginOption => {
     enforce: 'pre',
 
     load(id: string) {
-      if (/application\/shared\/icons\/assets\/svg-colorizable\/.*\.svg\?raw$/.test(id)) {
+      if (
+        /application\/shared\/icons\/assets\/svg-colorizable\/.*\.svg\?raw$/.test(
+          id
+        )
+      ) {
         console.log(id)
         const idWithoutQuery = id.replace(/\?raw$/, '')
         const svgCode = readFileSync(idWithoutQuery)

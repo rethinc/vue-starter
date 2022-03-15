@@ -1,19 +1,12 @@
 <template>
-  <ExamplesOverview />
+  <RouterView />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import ExamplesOverview from './application/examplesOverview/ExamplesOverview.vue'
 
 export default defineComponent({
   name: 'App',
-  components: {
-    ExamplesOverview,
-  },
-  setup() {
-    return {}
-  },
 })
 </script>
 

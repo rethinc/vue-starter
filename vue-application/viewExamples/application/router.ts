@@ -1,12 +1,36 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import { exampleNodes } from '../examples'
-import { createExampleRoutes } from './createExampleRoutes'
+import { createRouter, createWebHistory } from 'vue-router'
 
-const exampleRoutes: RouteRecordRaw[] = createExampleRoutes(exampleNodes)
-
-exampleRoutes.push({ path: '/', redirect: exampleRoutes[0].path })
+import ExamplesOverview from './overview/ExamplesOverview.vue'
+import ViewExample from './viewExample/ViewExample.vue'
+import ExampleNotFound from './viewExample/ExampleNotFound.vue'
+import IconViewExample from '../examples/shared/IconViewExample.vue'
 
 export const viewExamplesRouter = createRouter({
   history: createWebHistory(),
-  routes: exampleRoutes,
+  routes: [
+    {
+      path: '/:pathMatch(.*)*',
+      component: ExamplesOverview,
+      children: [
+        {
+          path: '/',
+          redirect: '/application/shared/icons',
+        },
+      ],
+    },
+    {
+      path: '/viewExample',
+      component: ViewExample,
+      children: [
+        {
+          path: 'application/shared/icons',
+          component: IconViewExample,
+        },
+        {
+          path: ':pathMatch(.*)*',
+          component: ExampleNotFound,
+        },
+      ],
+    },
+  ],
 })

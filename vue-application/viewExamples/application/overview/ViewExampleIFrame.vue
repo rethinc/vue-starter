@@ -17,7 +17,7 @@ export default defineComponent({
     const exampleIFrame = ref<HTMLIFrameElement>()
     const route = useRoute()
     const examplePath = computed(() => {
-      return `/viewExampleApp/?examplePath=${route.path}`
+      return `/viewExample${route.path}`
     })
 
     return {
