@@ -3,7 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import ExamplesOverview from './overview/ExamplesOverview.vue'
 import ViewExample from './viewExample/ViewExample.vue'
 import ExampleNotFound from './viewExample/ExampleNotFound.vue'
-import IconViewExample from '../examples/shared/IconViewExample.vue'
+import { exampleRoutes } from './exampleRoutes'
+
+console.log(exampleRoutes[0].path)
 
 export const viewExamplesRouter = createRouter({
   history: createWebHistory(),
@@ -14,7 +16,7 @@ export const viewExamplesRouter = createRouter({
       children: [
         {
           path: '/',
-          redirect: '/application/shared/icons',
+          redirect: `/${exampleRoutes[0].path}`,
         },
       ],
     },
@@ -22,10 +24,7 @@ export const viewExamplesRouter = createRouter({
       path: '/viewExample',
       component: ViewExample,
       children: [
-        {
-          path: 'application/shared/icons',
-          component: IconViewExample,
-        },
+        ...exampleRoutes,
         {
           path: ':pathMatch(.*)*',
           component: ExampleNotFound,
