@@ -25,7 +25,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import { ExampleNode } from '../../queryExamples'
+import { ExampleNode } from '../../examples'
 
 export default defineComponent({
   name: 'NavigationViewExampleNode',
