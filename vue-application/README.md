@@ -37,7 +37,7 @@ npm run test
 
 ### Views
 
-Add view examples component in `view-examples/examples/shared` and register it in `view-examples/examples.ts`
+Add view examples component in `view-examples/examples/` and add route for it in `view-examples/application/exampleRoutes.ts`
 
 Run view examples app
 ```

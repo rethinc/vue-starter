@@ -1,25 +1,27 @@
 <template>
   <ul class="navigation">
-    <NavigationViewExampleNode
-      v-for="exampleNode in exampleNodes"
-      :key="exampleNode.name"
-      :example-node="exampleNode"
+    <NavigationItemView
+      v-for="navigationItem in navigationItems"
+      :key="navigationItem.name"
+      :navigation-item="navigationItem"
     />
   </ul>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { exampleNodes } from '../../examples'
-import NavigationViewExampleNode from './NavigationViewExampleNode.vue'
+import NavigationItemView from './NavigationItemView.vue'
+import { mapRoutesToNavigationItems } from './mapRoutesToNavigationItems'
+import { exampleRoutes } from '../exampleRoutes'
 
 export default defineComponent({
   name: 'NavigationView',
-  components: { NavigationViewExampleNode },
+  components: { NavigationItemView },
 
   setup() {
+    const navigationItems = mapRoutesToNavigationItems(exampleRoutes)
     return {
-      exampleNodes,
+      navigationItems,
     }
   },
 })
