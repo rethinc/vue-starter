@@ -5,7 +5,11 @@ import vue from '@vitejs/plugin-vue'
 import * as path from 'path'
 
 export default defineConfig({
-  plugins: [colorizableIcons(), vue(), vueViewExamples()],
+  plugins: [
+    colorizableIcons(),
+    vue(),
+    vueViewExamples('./viewExamples/examples'),
+  ],
   root: 'viewExamples',
   resolve: {
     alias: {

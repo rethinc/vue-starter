@@ -1,6 +1,7 @@
 import { PluginOption } from 'vite'
+import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 
-export default (): PluginOption => {
+export default (examplesPath: string): PluginOption => {
   const virtualModuleId = '@exampleRoutes'
   const resolvedVirtualModuleId = '\0' + virtualModuleId
 
@@ -13,14 +14,12 @@ export default (): PluginOption => {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
+        const routeFile = mapExampleFilesToRoutes(examplesPath)
         return `
-import IconViewExample from './viewExamples/examples/shared/IconViewExample.vue'
-export const exampleRoutes = [
-  {
-    path: 'application/shared/icons',
-    component: IconViewExample,
-  },
-]`
+          ${routeFile.imports.join('\n')}
+          export const exampleRoutes = [
+            ${routeFile.routes.join(',\n')}
+          ]`
       }
     },
   }
