@@ -36,13 +36,14 @@ npm run test
 ```
 
 ### Views
-
-Add example vue component with Example suffix (e.g MyButtonExample.vue) in `./view-examples/application/examples`
-
 Run view examples app with
 ```
 npm run view-examples
 ```
+
+To add a new example add a vue component file with Example suffix (e.g MyButtonExample.vue) in `./view-examples/application/examples`
+
+
 open browser at [http://localhost:3001](http://localhost:3001)
 
 ### SVG Icons
