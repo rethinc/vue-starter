@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     colorizableIcons(),
     vue(),
-    vueViewExamples('./viewExamples/examples'),
+    vueViewExamples('./viewExamples/application/examples'),
   ],
   root: 'viewExamples',
   resolve: {
