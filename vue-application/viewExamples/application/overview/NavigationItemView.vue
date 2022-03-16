@@ -1,21 +1,21 @@
 <template>
   <li>
-    <div v-if="isPath" :style="itemPadding">
-      {{ navigationItem.name }}
+    <div v-if="pathNavigationItem" :style="itemPadding">
+      {{ pathNavigationItem.name }}
     </div>
-    <div v-else>
+    <div v-if="exampleNavigationItem">
       <RouterLink
         active-class="active-link"
-        :to="navigationItem.routerPath"
+        :to="exampleNavigationItem.routerPath"
         :style="itemPadding"
       >
-        {{ navigationItem.name }}
+        {{ exampleNavigationItem.name }}
       </RouterLink>
     </div>
 
-    <ul v-if="isPath">
+    <ul v-if="pathNavigationItem">
       <NavigationItemView
-        v-for="child in navigationItem.children"
+        v-for="child in pathNavigationItem.children"
         :key="child.name"
         :navigation-item="child"
         :navigation-level="childrenNavigationLevel"
@@ -27,6 +27,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
 import {
+  isExampleNavigationItem,
   isPathNavigationItem,
   NavigationItem,
 } from './mapRoutesToNavigationItems'
@@ -47,11 +48,16 @@ export default defineComponent({
     const itemPadding = {
       'padding-left': `${props.navigationLevel * 10}px`,
     }
-    const isPath = isPathNavigationItem(props.navigationItem)
     const childrenNavigationLevel = props.navigationLevel + 1
-
+    const pathNavigationItem = isPathNavigationItem(props.navigationItem)
+      ? props.navigationItem
+      : undefined
+    const exampleNavigationItem = isExampleNavigationItem(props.navigationItem)
+      ? props.navigationItem
+      : undefined
     return {
-      isPath,
+      pathNavigationItem,
+      exampleNavigationItem,
       itemPadding,
       childrenNavigationLevel,
     }

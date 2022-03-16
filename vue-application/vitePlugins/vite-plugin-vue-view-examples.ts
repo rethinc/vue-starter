@@ -1,4 +1,6 @@
-export default function vitePluginVueViewExamples() {
+import { PluginOption } from 'vite'
+
+export default (): PluginOption => {
   const virtualModuleId = '@exampleRoutes'
   const resolvedVirtualModuleId = '\0' + virtualModuleId
 

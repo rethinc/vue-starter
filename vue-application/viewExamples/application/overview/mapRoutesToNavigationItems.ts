@@ -18,6 +18,12 @@ export const isPathNavigationItem = (
   return 'children' in navigationItem
 }
 
+export const isExampleNavigationItem = (
+  navigationItem: NavigationItem
+): navigationItem is ExampleNavigationItem => {
+  return 'routerPath' in navigationItem
+}
+
 export const mapRoutesToNavigationItems = (
   routes: RouteRecordRaw[]
 ): NavigationItem[] => {

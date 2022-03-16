@@ -2,17 +2,16 @@ import { PluginOption } from 'vite'
 import svgo from 'svgo'
 import { readFileSync } from 'fs'
 
-export const pluginIconColorizable = (): PluginOption => {
+export default (): PluginOption => {
+  const fileMatch =
+    /application\/shared\/icons\/assets\/svg-colorizable\/.*\.svg\?raw$/
+
   return {
     name: 'colorizeSvgIcons',
     enforce: 'pre',
 
     load(id: string) {
-      if (
-        /application\/shared\/icons\/assets\/svg-colorizable\/.*\.svg\?raw$/.test(
-          id
-        )
-      ) {
+      if (fileMatch.test(id)) {
         console.log(id)
         const idWithoutQuery = id.replace(/\?raw$/, '')
         const svgCode = readFileSync(idWithoutQuery)
