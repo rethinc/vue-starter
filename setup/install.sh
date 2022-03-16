@@ -40,8 +40,8 @@ main() {
 
 
   cp -r "${source_folder}" "${product_folder}"
-  "${sed}" -i "" -e "s/{{productName}}/${product_name}/g" "${product_folder}/README.md"
-  "${sed}" -i "" -e "s/{{productName}}/${product_name}/g" "${product_folder}/package.json"
+  "${sed}" -i'' -e "s/{{productName}}/${product_name}/g" "${product_folder}/README.md"
+  "${sed}" -i'' -e "s/{{productName}}/${product_name}/g" "${product_folder}/package.json"
   install_dependencies "${product_folder}"
 }
 
