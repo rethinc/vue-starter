@@ -12,7 +12,6 @@ export default (): PluginOption => {
 
     load(id: string) {
       if (fileMatch.test(id)) {
-        console.log(id)
         const idWithoutQuery = id.replace(/\?raw$/, '')
         const svgCode = readFileSync(idWithoutQuery)
         const optimizedSvg = svgo.optimize(svgCode, {
