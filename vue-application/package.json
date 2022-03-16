@@ -12,7 +12,7 @@
     "test": "jest",
     "viewExamples": "vite -c vite.viewExamples.config.ts --port 3001",
     "generateViewExamples": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generateViewExamples",
-    "generateIcons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generateIcons.ts"
+    "generateIcons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generateIcons"
   },
   "dependencies": {
     "vue": "^3.2.31",
