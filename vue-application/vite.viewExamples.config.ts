@@ -1,8 +1,15 @@
 import { defineConfig } from 'vite'
-import appConfig from './vite.config'
+import { pluginIconColorizable } from './vitePlugins/pluginIconColorizable'
+import viewExamples from './vitePlugins/vite-plugin-vue-view-examples'
+import vue from '@vitejs/plugin-vue'
+import * as path from 'path'
 
 export default defineConfig({
-  ...appConfig,
+  plugins: [pluginIconColorizable(), viewExamples(), vue()],
   root: 'viewExamples',
-  publicDir: '../public',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+    },
+  },
 })
