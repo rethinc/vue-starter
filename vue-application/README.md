@@ -37,11 +37,11 @@ npm run test
 
 ### Views
 
-Add view examples component in `view-examples/examples/` and add route for it in `view-examples/application/exampleRoutes.ts`
+Add example vue component with Example suffix (e.g MyButtonExample.vue) in `./view-examples/application/examples`
 
-Run view examples app
+Run view examples app with
 ```
-npm run viewExamples
+npm run view-examples
 ```
 open browser at [http://localhost:3001](http://localhost:3001)
 
@@ -51,7 +51,7 @@ Place colorizable (color will be defined in css) icons in the `src/application/s
 
 After icon changes generate the icon provider file with the command:
 ```
-npm run generateIcons
+npm run generate-icons
 ```
 
 ### Dependencies
