@@ -1,5 +1,8 @@
 import { PluginOption } from 'vite'
-import svgo from 'svgo'
+// TODO: Create typescript .d.ts for svgo file because npm libray @types/svgo does not support the latest version of svgo:
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import * as svgo from 'svgo'
 import { readFileSync } from 'fs'
 
 export default (): PluginOption => {
