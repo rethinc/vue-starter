@@ -1,11 +1,19 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 
 import ExamplesOverview from './overview/ExamplesOverview.vue'
 import ViewExample from './viewExample/ViewExample.vue'
 import ExampleNotFound from './viewExample/ExampleNotFound.vue'
 import { exampleRoutes } from '@exampleRoutes'
 
-console.log(exampleRoutes[0].path)
+const firstExampleRoute = exampleRoutes[0]
+const rootChildren: RouteRecordRaw[] = firstExampleRoute
+  ? [
+      {
+        path: '/',
+        redirect: `/${exampleRoutes[0].path}`,
+      },
+    ]
+  : []
 
 export const viewExamplesRouter = createRouter({
   history: createWebHistory(),
@@ -13,12 +21,7 @@ export const viewExamplesRouter = createRouter({
     {
       path: '/:pathMatch(.*)*',
       component: ExamplesOverview,
-      children: [
-        {
-          path: '/',
-          redirect: `/${exampleRoutes[0].path}`,
-        },
-      ],
+      children: rootChildren,
     },
     {
       path: '/viewExampleIFrame',
