@@ -4,6 +4,7 @@ import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 
 describe('mapExampleDirectoryToRoutes', () => {
   const exampleRootPath = '/tmp/testParseExampleDir'
+  const exampleFileNameSuffix = '.example.vue'
 
   beforeEach(() => {
     if (fs.existsSync(exampleRootPath)) {
@@ -13,21 +14,28 @@ describe('mapExampleDirectoryToRoutes', () => {
   })
 
   it('should add import for example file', () => {
-    const exampleFileName = 'DummyExample.vue'
+    const exampleFilePattern = '.example.vue'
+    const exampleFileName = 'Dummy.example.vue'
     createFileInPath(exampleRootPath, exampleFileName)
 
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
+    const routeFile = mapExampleFilesToRoutes(
+      exampleRootPath,
+      exampleFilePattern
+    )
 
     expect(routeFile.imports).toStrictEqual([
-      `import DummyExample from '${exampleRootPath}/DummyExample.vue'`,
+      `import DummyExample from '${exampleRootPath}/${exampleFileName}'`,
     ])
   })
 
   it('should add route definition for example file', () => {
-    const exampleFileName = 'DummyExample.vue'
+    const exampleFileName = 'Dummy.example.vue'
     createFileInPath(exampleRootPath, exampleFileName)
 
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
+    const routeFile = mapExampleFilesToRoutes(
+      exampleRootPath,
+      exampleFileNameSuffix
+    )
 
     expectRoutes(routeFile.routes).toEqual([
       `{
@@ -38,23 +46,29 @@ describe('mapExampleDirectoryToRoutes', () => {
   })
 
   it('should add import for example file recursively', () => {
-    const exampleFileName = 'DummyExample.vue'
+    const exampleFileName = 'Dummy.example.vue'
     const directoryPath = createDirectoryInPath(exampleRootPath, 'directory')
     createFileInPath(directoryPath, exampleFileName)
 
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
+    const routeFile = mapExampleFilesToRoutes(
+      exampleRootPath,
+      exampleFileNameSuffix
+    )
 
     expect(routeFile.imports).toStrictEqual([
-      `import DummyExample from '${directoryPath}/DummyExample.vue'`,
+      `import DummyExample from '${directoryPath}/${exampleFileName}'`,
     ])
   })
 
   it('should add route definition for example file recursively', () => {
-    const exampleFileName = 'DummyExample.vue'
+    const exampleFileName = 'Dummy.example.vue'
     const directoryPath = createDirectoryInPath(exampleRootPath, 'directory')
     createFileInPath(directoryPath, exampleFileName)
 
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
+    const routeFile = mapExampleFilesToRoutes(
+      exampleRootPath,
+      exampleFileNameSuffix
+    )
 
     expectRoutes(routeFile.routes).toEqual([
       `{
@@ -65,12 +79,15 @@ describe('mapExampleDirectoryToRoutes', () => {
   })
 
   it('should add route definition for example file recursively 2 level deep', () => {
-    const exampleFileName = 'DummyExample.vue'
+    const exampleFileName = 'Dummy.example.vue'
     const level1Path = createDirectoryInPath(exampleRootPath, 'level1')
     const level2Path = createDirectoryInPath(level1Path, 'level2')
     createFileInPath(level2Path, exampleFileName)
 
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
+    const routeFile = mapExampleFilesToRoutes(
+      exampleRootPath,
+      exampleFileNameSuffix
+    )
 
     expectRoutes(routeFile.routes).toEqual([
       `{
@@ -80,21 +97,14 @@ describe('mapExampleDirectoryToRoutes', () => {
     ])
   })
 
-  it('should ignore non vue files', () => {
-    const exampleFileName = 'DummyExample.ts'
-    createFileInPath(exampleRootPath, exampleFileName)
-
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
-
-    expect(routeFile.imports).toStrictEqual([])
-    expect(routeFile.routes).toStrictEqual([])
-  })
-
-  it('should ignore vue file without Example suffix', () => {
+  it('should ignore vue file when not matching file name suffix', () => {
     const exampleFileName = 'Dummy.vue'
     createFileInPath(exampleRootPath, exampleFileName)
 
-    const routeFile = mapExampleFilesToRoutes(exampleRootPath)
+    const routeFile = mapExampleFilesToRoutes(
+      exampleRootPath,
+      exampleFileNameSuffix
+    )
 
     expect(routeFile.imports).toStrictEqual([])
     expect(routeFile.routes).toStrictEqual([])

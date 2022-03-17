@@ -2,7 +2,10 @@ import { PluginOption, ViteDevServer } from 'vite'
 import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 import * as path from 'path'
 
-export default (rootExamplesPath: string): PluginOption => {
+export default (
+  rootExamplesPath: string,
+  exampleFileNameSuffix: string
+): PluginOption => {
   const virtualModuleId = '@exampleRoutes'
   const resolvedVirtualModuleId = '\0' + virtualModuleId
   const absoluteRootExamplePath = path.isAbsolute(rootExamplesPath)
@@ -35,7 +38,10 @@ export default (rootExamplesPath: string): PluginOption => {
     },
     load(id) {
       if (id === resolvedVirtualModuleId) {
-        const routeFile = mapExampleFilesToRoutes(absoluteRootExamplePath)
+        const routeFile = mapExampleFilesToRoutes(
+          absoluteRootExamplePath,
+          exampleFileNameSuffix
+        )
         return `
           ${routeFile.imports.join('\n')}
           export const exampleRoutes = [

@@ -6,12 +6,24 @@ export interface RouteFile {
   routes: string[]
 }
 
-export const mapExampleFilesToRoutes = (rootExamplePath: string): RouteFile => {
-  return collectImportsAndRoutes(rootExamplePath, '')
+export const mapExampleFilesToRoutes = (
+  rootExamplePath: string,
+  exampleFileNameSuffix: string
+): RouteFile => {
+  const escapedFileNameSuffix = exampleFileNameSuffix.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    '\\$&'
+  )
+  return collectImportsAndRoutes(
+    rootExamplePath,
+    new RegExp(`(.*)${escapedFileNameSuffix}$`),
+    ''
+  )
 }
 
 const collectImportsAndRoutes = (
   rootExamplePath: string,
+  exampleFilePattern: RegExp,
   routePath: string
 ): { imports: string[]; routes: string[] } => {
   const imports: string[] = []
@@ -25,14 +37,16 @@ const collectImportsAndRoutes = (
     if (isDirectory(fileOrDirectoryPath)) {
       const importsAndRoutes = collectImportsAndRoutes(
         fileOrDirectoryPath,
+        exampleFilePattern,
         `${routePath}${fileOrDirectoryName}/`
       )
       imports.push(...importsAndRoutes.imports)
       routes.push(...importsAndRoutes.routes)
     } else {
-      const importName = removeFileExtension(path.basename(fileOrDirectoryName))
-      if (isVueFile(fileOrDirectoryPath) && hasExampleSuffix(importName)) {
-        const exampleName = removeExampleSuffix(importName)
+      const matches = fileOrDirectoryName.match(exampleFilePattern)
+      if (matches && matches.length === 2) {
+        const exampleName = matches[1]
+        const importName = `${exampleName}Example`
         imports.push(createImport(importName, fileOrDirectoryPath))
         routes.push(createRoute(routePath, exampleName, importName))
       }
@@ -50,19 +64,9 @@ export const createRoute = (
   component: string
 ) =>
   `{
-      path: '${routePath}${exampleName}',
-      component:${component},
-  }`
-
-const removeFileExtension = (path: string) =>
-  path.substring(0, path.lastIndexOf('.'))
-
-const removeExampleSuffix = (name: string) =>
-  name.substring(0, name.lastIndexOf('Example'))
+path: '${routePath}${exampleName}',
+component:${component},
+}`
 
 const isDirectory = (fileOrDirectoryPath: string) =>
   fs.statSync(fileOrDirectoryPath).isDirectory()
-
-const isVueFile = (filePath: string) => path.extname(filePath) === '.vue'
-
-const hasExampleSuffix = (name: string) => name.endsWith('Example')
