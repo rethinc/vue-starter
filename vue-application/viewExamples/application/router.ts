@@ -21,7 +21,7 @@ export const viewExamplesRouter = createRouter({
       ],
     },
     {
-      path: '/viewExample',
+      path: '/viewExampleIFrame',
       component: ViewExample,
       children: [
         ...exampleRoutes,

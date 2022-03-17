@@ -1,28 +1,22 @@
 <template>
-  <iframe
-    ref="exampleIFrame"
-    class="selected-example-i-frame-view"
-    :src="examplePath"
-  />
+  <iframe class="selected-example-i-frame-view" :src="exampleIFramePath" />
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 
 import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'ViewExampleIFrame',
   setup() {
-    const exampleIFrame = ref<HTMLIFrameElement>()
     const route = useRoute()
-    const examplePath = computed(() => {
-      return `/viewExample${route.path}`
+    const exampleIFramePath = computed(() => {
+      return `/viewExampleIFrame${route.path}`
     })
 
     return {
-      exampleIFrame,
-      examplePath,
+      exampleIFramePath,
     }
   },
 })
