@@ -4,7 +4,13 @@ import * as path from 'path'
 import colorizableIcons from './vitePlugins/vite-plugin-colorizable-icons'
 
 export default defineConfig({
-  plugins: [colorizableIcons(), vue()],
+  plugins: [
+    colorizableIcons({
+      colorizableIconsDirectory:
+        'application/shared/icons/assets/svg-colorizable',
+    }),
+    vue(),
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

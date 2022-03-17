@@ -5,9 +5,21 @@ import { PluginOption } from 'vite'
 import * as svgo from 'svgo'
 import { readFileSync } from 'fs'
 
-export default (): PluginOption => {
-  const fileMatch =
-    /application\/shared\/icons\/assets\/svg-colorizable\/.*\.svg\?raw$/
+export interface ColorizableIconsPluginConfiguration {
+  colorizableIconsDirectory: string
+}
+
+export default (
+  configuration: ColorizableIconsPluginConfiguration
+): PluginOption => {
+  const escapedColorizableIconsDirectory =
+    configuration.colorizableIconsDirectory.replace(
+      /[.*+?^${}()|[\]\\]/g,
+      '\\$&'
+    )
+  const fileMatch = new RegExp(
+    `${escapedColorizableIconsDirectory}.*\\.svg\\?raw$`
+  )
 
   return {
     name: 'colorizeSvgIcons',
