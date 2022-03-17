@@ -18,8 +18,10 @@ export default (examplesPath: string): PluginOption => {
           const module = server.moduleGraph.getModuleById(
             resolvedVirtualModuleId
           )
-          server.moduleGraph.invalidateModule(module)
-          server.ws.send({ type: 'full-reload' })
+          if (module) {
+            server.moduleGraph.invalidateModule(module)
+            server.ws.send({ type: 'full-reload' })
+          }
         }
       })
     },
