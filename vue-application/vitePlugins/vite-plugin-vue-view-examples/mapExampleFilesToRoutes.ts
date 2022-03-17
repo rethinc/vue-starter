@@ -6,21 +6,22 @@ export interface RouteFile {
   routes: string[]
 }
 
-export const mapExampleFilesToRoutes = (
-  rootDirectoryPath: string
-): RouteFile => {
-  return collectImportsAndRoutes(rootDirectoryPath, '')
+export const mapExampleFilesToRoutes = (rootExamplePath: string): RouteFile => {
+  return collectImportsAndRoutes(rootExamplePath, '')
 }
 
 const collectImportsAndRoutes = (
-  directoryPath: string,
+  rootExamplePath: string,
   routePath: string
 ): { imports: string[]; routes: string[] } => {
   const imports: string[] = []
   const routes: string[] = []
 
-  fs.readdirSync(directoryPath).forEach((fileOrDirectoryName) => {
-    const fileOrDirectoryPath = path.resolve(directoryPath, fileOrDirectoryName)
+  fs.readdirSync(rootExamplePath).forEach((fileOrDirectoryName) => {
+    const fileOrDirectoryPath = path.resolve(
+      rootExamplePath,
+      fileOrDirectoryName
+    )
     if (isDirectory(fileOrDirectoryPath)) {
       const importsAndRoutes = collectImportsAndRoutes(
         fileOrDirectoryPath,
