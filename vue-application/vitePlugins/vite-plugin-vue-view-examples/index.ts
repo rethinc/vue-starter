@@ -2,24 +2,31 @@ import { PluginOption, ViteDevServer } from 'vite'
 import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 import * as path from 'path'
 
-export default (
-  rootExamplesPath: string,
+export interface ViewExamplesPluginConfiguration {
+  rootExamplesPath: string
   exampleFileNameSuffix: string
+}
+
+export default (
+  configuration: ViewExamplesPluginConfiguration
 ): PluginOption => {
   const virtualModuleId = '@exampleRoutes'
   const resolvedVirtualModuleId = '\0' + virtualModuleId
-  const absoluteRootExamplePath = path.isAbsolute(rootExamplesPath)
-    ? rootExamplesPath
-    : path.resolve(rootExamplesPath)
+  const resolvedConfiguration = {
+    ...configuration,
+    rootExamplesPath: path.isAbsolute(configuration.rootExamplesPath)
+      ? configuration.rootExamplesPath
+      : path.resolve(configuration.rootExamplesPath),
+  }
 
   return {
     name: 'vue-view-examples',
     configureServer: (server: ViteDevServer) => {
-      server.watcher.add(absoluteRootExamplePath)
+      server.watcher.add(resolvedConfiguration.rootExamplesPath)
       server.watcher.on('all', async (event, changedFilePath) => {
         if (
           ['add', 'unlink'].includes(event) &&
-          changedFilePath.startsWith(absoluteRootExamplePath)
+          changedFilePath.startsWith(resolvedConfiguration.rootExamplesPath)
         ) {
           const module = server.moduleGraph.getModuleById(
             resolvedVirtualModuleId
@@ -39,8 +46,8 @@ export default (
     load(id) {
       if (id === resolvedVirtualModuleId) {
         const routeFile = mapExampleFilesToRoutes(
-          absoluteRootExamplePath,
-          exampleFileNameSuffix
+          resolvedConfiguration.rootExamplesPath,
+          configuration.exampleFileNameSuffix
         )
         return `
           ${routeFile.imports.join('\n')}

@@ -6,9 +6,15 @@ import * as path from 'path'
 
 export default defineConfig({
   plugins: [
-    colorizableIcons(),
+    colorizableIcons({
+      colorizableIconsDirectory:
+        'application/shared/icons/assets/svg-colorizable',
+    }),
     vue(),
-    vueViewExamples('src/application', '.example.vue'),
+    vueViewExamples({
+      rootExamplesPath: 'src/application',
+      exampleFileNameSuffix: '.example.vue',
+    }),
   ],
   root: 'viewExamples',
   resolve: {

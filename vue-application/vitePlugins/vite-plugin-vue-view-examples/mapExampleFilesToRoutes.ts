@@ -10,13 +10,13 @@ export const mapExampleFilesToRoutes = (
   rootExamplePath: string,
   exampleFileNameSuffix: string
 ): RouteFile => {
-  const escapedFileNameSuffix = exampleFileNameSuffix.replace(
+  const exampleFilePattern = exampleFileNameSuffix.replace(
     /[.*+?^${}()|[\]\\]/g,
     '\\$&'
   )
   return collectImportsAndRoutes(
     rootExamplePath,
-    new RegExp(`(.*)${escapedFileNameSuffix}$`),
+    new RegExp(`(.*)${exampleFilePattern}$`),
     ''
   )
 }
