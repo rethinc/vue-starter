@@ -29,8 +29,8 @@ export const mapRoutesToNavigationItems = (
 ): NavigationItem[] => {
   const navigationItems: NavigationItem[] = []
   routes.forEach((route) => {
-    const pathSegments = route.path.split('/')
-    const path = `/${route.path}`
+    const pathSegments = route.path.slice(1, route.path.length).split('/')
+    const path = route.path
     const existingPathNavigationItem = findPathNavigationItemForPath(
       pathSegments,
       navigationItems.filter(isPathNavigationItem)

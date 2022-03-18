@@ -39,7 +39,7 @@ describe('mapExampleDirectoryToRoutes', () => {
 
     expectRoutes(routeFile.routes).toEqual([
       `{
-          path: 'Dummy',
+          path: '/Dummy',
           component: DummyExample,
        }`,
     ])
@@ -72,7 +72,7 @@ describe('mapExampleDirectoryToRoutes', () => {
 
     expectRoutes(routeFile.routes).toEqual([
       `{
-          path: 'directory/Dummy',
+          path: '/directory/Dummy',
           component: DummyExample,
        }`,
     ])
@@ -91,7 +91,7 @@ describe('mapExampleDirectoryToRoutes', () => {
 
     expectRoutes(routeFile.routes).toEqual([
       `{
-          path: 'level1/level2/Dummy',
+          path: '/level1/level2/Dummy',
           component: DummyExample,
        }`,
     ])

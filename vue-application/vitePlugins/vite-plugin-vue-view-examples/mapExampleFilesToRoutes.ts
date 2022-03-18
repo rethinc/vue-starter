@@ -17,7 +17,7 @@ export const mapExampleFilesToRoutes = (
   return collectImportsAndRoutes(
     rootExamplePath,
     new RegExp(`(.*)${exampleFilePattern}$`),
-    ''
+    '/'
   )
 }
 
