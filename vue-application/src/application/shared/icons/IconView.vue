@@ -28,7 +28,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .icon {
-  display: inline-flex;
   width: 100%;
   height: 100%;
 
@@ -39,6 +38,7 @@ export default defineComponent({
 }
 
 .style-text {
+  display: inline;
   width: 1em;
   height: 1em;
 
