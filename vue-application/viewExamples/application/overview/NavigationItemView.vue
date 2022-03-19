@@ -4,13 +4,12 @@
       {{ pathNavigationItem.name }}
     </div>
     <div v-if="exampleNavigationItem">
-      <RouterLink
-        active-class="active-link"
-        :to="exampleNavigationItem.routerPath"
+      <ExampleRouterLink
+        :example-navigation-item="exampleNavigationItem"
         :style="itemPadding"
       >
         {{ exampleNavigationItem.name }}
-      </RouterLink>
+      </ExampleRouterLink>
     </div>
 
     <ul v-if="pathNavigationItem">
@@ -31,9 +30,11 @@ import {
   isPathNavigationItem,
   NavigationItem,
 } from './mapRoutesToNavigationItems'
+import ExampleRouterLink from './ExampleRouterLink.vue'
 
 export default defineComponent({
   name: 'NavigationItemView',
+  components: { ExampleRouterLink },
   props: {
     navigationItem: {
       type: Object as PropType<NavigationItem>,
@@ -75,20 +76,5 @@ ul {
 
 li {
   padding: 3px 0 3px 0;
-}
-
-a {
-  text-decoration: none;
-  color: dimgrey;
-  display: block;
-  padding: 3px 0 3px 0;
-
-  &:hover {
-    color: lightblue;
-  }
-
-  &.active-link {
-    color: darkgreen;
-  }
 }
 </style>
