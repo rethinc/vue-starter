@@ -1,6 +1,6 @@
 <template>
   <RouterLink
-    :to="exampleNavigationItem.routerPath"
+    :to="routeLocation"
     active-class="active-link"
     class="router-link"
   >
@@ -9,8 +9,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { ExampleNavigationItem } from './mapRoutesToNavigationItems'
+import { RouteLocationRaw } from 'vue-router'
 
 export default defineComponent({
   props: {
@@ -18,6 +19,17 @@ export default defineComponent({
       type: Object as PropType<ExampleNavigationItem>,
       required: true,
     },
+  },
+  setup(props) {
+    const routeLocation = computed(
+      (): RouteLocationRaw => ({
+        path: '/viewExamples/',
+        query: {
+          exampleRoute: props.exampleNavigationItem.routerPath,
+        },
+      })
+    )
+    return { routeLocation }
   },
 })
 </script>
