@@ -41,7 +41,7 @@ To add a new example add a vue component file next to the component with a `.exa
 
 To view the examples run the dev server
 ```
-npm run view-examples
+npm run dev
 ```
 and open browser at (**trailing '/' is important**)
 [http://localhost:3000/view-examples/](http://localhost:3000/view-examples/)
