@@ -1,8 +1,8 @@
 <template>
   <RouterLink
     :to="routeLocation"
-    active-class="active-link"
     class="router-link"
+    :class="additionalClasses"
   >
     {{ exampleNavigationItem.name }}
   </RouterLink>
@@ -30,7 +30,13 @@ export default defineComponent({
         },
       })
     )
-    return { routeLocation }
+    const additionalClasses = computed(() => {
+      if (route.query.exampleRoute === props.exampleNavigationItem.routerPath) {
+        return 'active'
+      }
+      return ''
+    })
+    return { routeLocation, additionalClasses }
   },
 })
 </script>
@@ -46,7 +52,7 @@ export default defineComponent({
     color: lightblue;
   }
 
-  &.active-link {
+  &.active {
     color: darkgreen;
   }
 }
