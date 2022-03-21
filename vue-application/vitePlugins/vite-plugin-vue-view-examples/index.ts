@@ -26,7 +26,8 @@ export default (
       server.watcher.on('all', async (event, changedFilePath) => {
         if (
           ['add', 'unlink'].includes(event) &&
-          changedFilePath.startsWith(resolvedConfiguration.rootExamplesPath)
+          changedFilePath.startsWith(resolvedConfiguration.rootExamplesPath) &&
+          changedFilePath.endsWith(configuration.exampleFileNameSuffix)
         ) {
           const module = server.moduleGraph.getModuleById(
             resolvedVirtualModuleId
