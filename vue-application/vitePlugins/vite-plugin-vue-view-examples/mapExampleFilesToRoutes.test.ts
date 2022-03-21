@@ -24,7 +24,7 @@ describe('mapExampleDirectoryToRoutes', () => {
     )
 
     expect(routeFile.imports).toStrictEqual([
-      `import DummyExample from '${exampleRootPath}/${exampleFileName}'`,
+      `import ExampleDummyexamplevue from '${exampleRootPath}/${exampleFileName}'`,
     ])
   })
 
@@ -40,7 +40,7 @@ describe('mapExampleDirectoryToRoutes', () => {
     expectRoutes(routeFile.routes).toEqual([
       `{
           path: '/Dummy',
-          component: DummyExample,
+          component: ExampleDummyexamplevue,
        }`,
     ])
   })
@@ -56,7 +56,7 @@ describe('mapExampleDirectoryToRoutes', () => {
     )
 
     expect(routeFile.imports).toStrictEqual([
-      `import DummyExample from '${directoryPath}/${exampleFileName}'`,
+      `import ExampledirectoryDummyexamplevue from '${directoryPath}/${exampleFileName}'`,
     ])
   })
 
@@ -73,7 +73,7 @@ describe('mapExampleDirectoryToRoutes', () => {
     expectRoutes(routeFile.routes).toEqual([
       `{
           path: '/directory/Dummy',
-          component: DummyExample,
+          component: ExampledirectoryDummyexamplevue,
        }`,
     ])
   })
@@ -92,7 +92,7 @@ describe('mapExampleDirectoryToRoutes', () => {
     expectRoutes(routeFile.routes).toEqual([
       `{
           path: '/level1/level2/Dummy',
-          component: DummyExample,
+          component: Examplelevel1level2Dummyexamplevue,
        }`,
     ])
   })
@@ -133,6 +133,7 @@ describe('mapExampleDirectoryToRoutes', () => {
   ): { toEqual: (expectedRoutes: string[]) => void } => {
     return {
       toEqual: (expectedRoutes) => {
+        console.log(removeSpaces(expectedRoutes))
         expect(removeSpaces(actualRoutes)).toStrictEqual(
           removeSpaces(expectedRoutes)
         )
@@ -141,5 +142,5 @@ describe('mapExampleDirectoryToRoutes', () => {
   }
 
   const removeSpaces = (routes: string[]) =>
-    routes.map((route) => route.replace(/ +/g, ''))
+    routes.map((route) => route.replace(/[ \n]*/g, ''))
 })

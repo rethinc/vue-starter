@@ -12,7 +12,7 @@ export default defineConfig({
     }),
     vue(),
     vueViewExamples({
-      rootExamplesPath: 'src/application',
+      examplesRootPath: 'src/application',
       exampleFileNameSuffix: '.example.vue',
     }),
   ],
