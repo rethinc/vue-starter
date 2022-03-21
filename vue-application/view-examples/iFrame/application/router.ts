@@ -21,6 +21,7 @@ export const viewExamplesIFrameRouter = createRouter({
         next: NavigationGuardNext
       ) => {
         const route = to.query.exampleRoute as string | undefined
+        console.log(route)
         if (route) {
           next(route)
         } else {

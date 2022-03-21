@@ -24,7 +24,7 @@ export const viewExamplesRouter = createRouter({
         const exampleRoute = to.query.exampleRoute
         if (firstExampleRoute && !exampleRoute) {
           next({
-            path: '/viewExamples/',
+            path: to.path,
             query: { exampleRoute: firstExampleRoute.path },
           })
           return

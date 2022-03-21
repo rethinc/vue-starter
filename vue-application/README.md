@@ -44,7 +44,7 @@ To view the examples run the dev server
 npm run view-examples
 ```
 and open browser at (**trailing '/' is important**)
-[http://localhost:3000/viewExamples/](http://localhost:3000/viewExamples/)
+[http://localhost:3000/view-examples/](http://localhost:3000/view-examples/)
 
 ### SVG Icons
 
