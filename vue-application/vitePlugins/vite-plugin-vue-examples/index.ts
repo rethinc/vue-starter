@@ -17,6 +17,7 @@ export default (
       : path.resolve(configuration.examplesRootPath),
   }
   const exampleRoutesId = '@examples/routes'
+  const exampleIFrameAppId = '@examples/IFrameApp.vue'
 
   return {
     name: 'vue-view-examples',
@@ -40,6 +41,9 @@ export default (
       if (id === exampleRoutesId) {
         return exampleRoutesId
       }
+      if (id === exampleIFrameAppId) {
+        return exampleIFrameAppId
+      }
     },
     load(id) {
       if (id === exampleRoutesId) {
@@ -52,6 +56,25 @@ export default (
           export const exampleRoutes = [
             ${routeFile.routes.join(',\n')}
           ]`
+      }
+      if (id === exampleIFrameAppId) {
+        return `
+        <template>
+          <RouterView />
+        </template>
+        
+        <script lang="ts">
+        import { defineComponent } from 'vue'
+        
+        export default defineComponent({
+          name: 'App',
+        })
+        </script>
+        
+        <style lang="scss">
+        @import 'src/assets/styles/global.scss';
+        </style>
+        `
       }
     },
   }
