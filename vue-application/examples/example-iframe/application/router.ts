@@ -6,7 +6,7 @@ import {
 } from 'vue-router'
 
 import ExampleNotFound from './viewExample/ExampleNotFound.vue'
-import { exampleRoutes } from '@exampleRoutes'
+import { exampleRoutes } from '@examples/routes'
 
 export const viewExamplesIFrameRouter = createRouter({
   history: createWebHistory(),
@@ -21,7 +21,6 @@ export const viewExamplesIFrameRouter = createRouter({
         next: NavigationGuardNext
       ) => {
         const route = to.query.exampleRoute as string | undefined
-        console.log(route)
         if (route) {
           next(route)
         } else {

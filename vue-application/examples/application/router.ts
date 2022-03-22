@@ -6,7 +6,7 @@ import {
 } from 'vue-router'
 
 import ExamplesOverview from './overview/ExamplesOverview.vue'
-import { exampleRoutes } from '@exampleRoutes'
+import { exampleRoutes } from '@examples/routes'
 
 const firstExampleRoute = exampleRoutes[0]
 

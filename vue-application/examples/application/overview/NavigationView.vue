@@ -12,7 +12,7 @@
 import { defineComponent } from 'vue'
 import NavigationItemView from './NavigationItemView.vue'
 import { mapRoutesToNavigationItems } from './mapRoutesToNavigationItems'
-import { exampleRoutes } from '@exampleRoutes'
+import { exampleRoutes } from '@examples/routes'
 
 export default defineComponent({
   name: 'NavigationView',
