@@ -133,7 +133,6 @@ describe('mapExampleDirectoryToRoutes', () => {
   ): { toEqual: (expectedRoutes: string[]) => void } => {
     return {
       toEqual: (expectedRoutes) => {
-        console.log(removeSpaces(expectedRoutes))
         expect(removeSpaces(actualRoutes)).toStrictEqual(
           removeSpaces(expectedRoutes)
         )
