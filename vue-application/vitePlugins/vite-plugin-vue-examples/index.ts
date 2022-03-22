@@ -5,6 +5,7 @@ import * as path from 'path'
 export interface ViewExamplesPluginConfiguration {
   examplesRootPath: string
   exampleFileNameSuffix: string
+  globalStyle?: string
 }
 
 export default (
@@ -15,6 +16,7 @@ export default (
     rootExamplesPath: path.isAbsolute(configuration.examplesRootPath)
       ? configuration.examplesRootPath
       : path.resolve(configuration.examplesRootPath),
+    globalStyle: configuration.globalStyle ?? '',
   }
   const exampleRoutesId = '@examples/routes'
   const exampleIFrameAppId = '@examples/IFrameApp.vue'
@@ -72,7 +74,7 @@ export default (
         </script>
         
         <style lang="scss">
-        @import 'src/assets/styles/global.scss';
+        ${resolvedConfiguration.globalStyle}
         </style>
         `
       }
