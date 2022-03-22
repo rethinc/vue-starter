@@ -2,7 +2,7 @@
   <h1>IconView</h1>
   <h2>Original icons</h2>
   <div style="display: flex">
-    <icon-view
+    <IconView
       v-for="type in IconOriginal"
       :key="type"
       :type="type"
@@ -13,7 +13,7 @@
   <h2>Colorizable icons</h2>
 
   <div style="display: flex">
-    <icon-view
+    <IconView
       v-for="type in IconColorizable"
       :key="type"
       :type="type"
@@ -31,19 +31,19 @@
   <h3>default</h3>
   <p>Sizes can be defined on icon element or its parent</p>
   <div style="display: flex">
-    <icon-view :type="firstOriginalIcon" style="width: 200px; height: 200px" />
+    <IconView :type="firstOriginalIcon" style="width: 200px; height: 200px" />
 
     <div style="width: 200px; height: 200px; border: 1px solid green">
-      <icon-view :type="firstOriginalIcon" />
+      <IconView :type="firstOriginalIcon" />
     </div>
   </div>
 
   <h3>style-text</h3>
   <p>Sizes will be adapted by current font-size value of parent element</p>
   <p class="text-example">
-    <icon-view :type="firstColorizableIcon" class="style-text" />
+    <IconView :type="firstColorizableIcon" class="style-text" />
     sed do eiusmod tempor incididunt ut labore et dolore
-    <icon-view :type="firstOriginalIcon" class="style-text" /> magna aliqua.
+    <IconView :type="firstOriginalIcon" class="style-text" /> magna aliqua.
   </p>
   <p class="text-example-larger">
     <IconView :type="firstColorizableIcon" class="style-text" />
