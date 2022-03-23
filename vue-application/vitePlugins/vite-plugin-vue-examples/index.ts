@@ -19,10 +19,11 @@ export default (
     globalStyle: configuration.globalStyle ?? '',
   }
   const exampleRoutesId = '@examples/routes'
-  const exampleIFrameAppId = '@examples/IFrameApp.vue'
+  const resolvedExampleRoutesId = '\0' + exampleRoutesId
+  const exampleGlobalScss = '@examples/global.scss'
 
   return {
-    name: 'vue-view-examples',
+    name: 'vue-examples',
     configureServer: (server: ViteDevServer) => {
       server.watcher.add(resolvedConfiguration.rootExamplesPath)
       server.watcher.on('all', async (event, changedFilePath) => {
@@ -31,7 +32,9 @@ export default (
           changedFilePath.startsWith(resolvedConfiguration.rootExamplesPath) &&
           changedFilePath.endsWith(configuration.exampleFileNameSuffix)
         ) {
-          const module = server.moduleGraph.getModuleById(exampleRoutesId)
+          const module = server.moduleGraph.getModuleById(
+            resolvedExampleRoutesId
+          )
           if (module) {
             server.moduleGraph.invalidateAll()
             server.ws.send({ type: 'full-reload' })
@@ -41,14 +44,14 @@ export default (
     },
     resolveId(id) {
       if (id === exampleRoutesId) {
-        return exampleRoutesId
+        return resolvedExampleRoutesId
       }
-      if (id === exampleIFrameAppId) {
-        return exampleIFrameAppId
+      if (id === exampleGlobalScss) {
+        return exampleGlobalScss
       }
     },
     load(id) {
-      if (id === exampleRoutesId) {
+      if (id === resolvedExampleRoutesId) {
         const routeFile = mapExampleFilesToRoutes(
           resolvedConfiguration.rootExamplesPath,
           configuration.exampleFileNameSuffix
@@ -59,24 +62,8 @@ export default (
             ${routeFile.routes.join(',\n')}
           ]`
       }
-      if (id === exampleIFrameAppId) {
-        return `
-        <template>
-          <RouterView />
-        </template>
-        
-        <script lang="ts">
-        import { defineComponent } from 'vue'
-        
-        export default defineComponent({
-          name: 'App',
-        })
-        </script>
-        
-        <style lang="scss">
-        ${resolvedConfiguration.globalStyle}
-        </style>
-        `
+      if (id === exampleGlobalScss) {
+        return resolvedConfiguration.globalStyle
       }
     },
   }

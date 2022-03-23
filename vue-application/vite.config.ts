@@ -24,7 +24,4 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  optimizeDeps: {
-    exclude: ['@examples/routes', '@examples/IFrameApp.vue'],
-  },
 })
