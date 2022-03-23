@@ -25,6 +25,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['@examples/routes'],
+    exclude: ['@examples/routes', '@examples/IFrameApp.vue'],
   },
 })
