@@ -25,6 +25,6 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['@exampleRoutes'],
+    exclude: ['@examples/routes'],
   },
 })
