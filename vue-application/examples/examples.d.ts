@@ -3,3 +3,9 @@ declare module '@examples/routes' {
 
   export const exampleRoutes: RouteRecordRaw[]
 }
+
+declare module '@examples/globalPlugins' {
+  import { Plugin } from 'vue'
+
+  export const globalPlugins: Plugin[]
+}
