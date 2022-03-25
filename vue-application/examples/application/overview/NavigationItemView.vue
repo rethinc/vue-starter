@@ -7,8 +7,13 @@ import {
 import ExampleRouterLink from './ExampleRouterLink.vue'
 
 const props = withDefaults(
-  defineProps<{ navigationItem: NavigationItem; navigationLevel?: number }>(),
-  { navigationLevel: 0 }
+  defineProps<{
+    navigationItem: NavigationItem
+    navigationLevel?: number
+  }>(),
+  {
+    navigationLevel: 0,
+  }
 )
 
 const itemPadding = {
