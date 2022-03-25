@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import IconView from '@/application/shared/icons/IconView.vue'
+import { IconColorizable, IconOriginal } from '@/application/shared/icons/icons'
+</script>
+
 <template>
   <h1>re:thinc - vue starter</h1>
   <p>
@@ -13,23 +18,6 @@
     "application" directory
   </p>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import IconView from '@/application/shared/icons/IconView.vue'
-import { IconColorizable, IconOriginal } from '@/application/shared/icons/icons'
-
-export default defineComponent({
-  name: 'EntryPoint',
-  components: { IconView },
-  setup() {
-    return {
-      IconColorizable,
-      IconOriginal,
-    }
-  },
-})
-</script>
 
 <style scoped lang="scss">
 @import '../../assets/styles/colors';
