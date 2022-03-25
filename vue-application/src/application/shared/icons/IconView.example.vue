@@ -1,3 +1,30 @@
+<script setup lang="ts">
+import { computed, ref } from 'vue'
+import IconView from './IconView.vue'
+import { IconColorizable, IconOriginal } from './icons'
+
+const colors = ['#F00', '#0F0', '#00F']
+let currentColorIndex = 0
+const iconsColorizableStyle = ref({
+  color: colors[currentColorIndex],
+})
+
+const changeColor = () => {
+  currentColorIndex = (currentColorIndex + 1) % 3
+  iconsColorizableStyle.value = { color: colors[currentColorIndex] }
+}
+
+const firstColorizableIcon = computed((): IconColorizable => {
+  const firstKey = Object.keys(IconColorizable)[0]
+  return IconColorizable[firstKey as keyof typeof IconColorizable]
+})
+
+const firstOriginalIcon = computed((): IconOriginal => {
+  const firstKey = Object.keys(IconOriginal)[0]
+  return IconOriginal[firstKey as keyof typeof IconOriginal]
+})
+</script>
+
 <template>
   <h1>IconView</h1>
   <h2>Original icons</h2>
@@ -51,48 +78,6 @@
     <IconView :type="firstOriginalIcon" class="style-text" /> magna aliqua.
   </p>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
-import IconView from './IconView.vue'
-import { IconColorizable, IconOriginal } from './icons'
-
-export default defineComponent({
-  name: 'IconViewExample',
-  components: { IconView },
-  setup: () => {
-    const colors = ['#F00', '#0F0', '#00F']
-    let currentColorIndex = 0
-    const iconsColorizableStyle = ref({
-      color: colors[currentColorIndex],
-    })
-
-    const changeColor = () => {
-      currentColorIndex = (currentColorIndex + 1) % 3
-      iconsColorizableStyle.value = { color: colors[currentColorIndex] }
-    }
-
-    const firstColorizableIcon = computed((): IconColorizable => {
-      const firstKey = Object.keys(IconColorizable)[0]
-      return IconColorizable[firstKey as keyof typeof IconColorizable]
-    })
-
-    const firstOriginalIcon = computed((): IconOriginal => {
-      const firstKey = Object.keys(IconOriginal)[0]
-      return IconOriginal[firstKey as keyof typeof IconOriginal]
-    })
-
-    return {
-      IconOriginal,
-      IconColorizable,
-      firstColorizableIcon,
-      firstOriginalIcon,
-      changeColor,
-      iconsColorizableStyle,
-    }
-  },
-})
-</script>
 
 <style lang="scss" scoped>
 .icon-example {
