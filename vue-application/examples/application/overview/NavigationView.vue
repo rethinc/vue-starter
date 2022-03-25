@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import NavigationItemView from './NavigationItemView.vue'
+import { mapRoutesToNavigationItems } from './mapRoutesToNavigationItems'
+import { exampleRoutes } from '@examples/routes'
+
+const navigationItems = mapRoutesToNavigationItems(exampleRoutes)
+</script>
+
 <template>
   <ul class="navigation">
     <NavigationItemView
@@ -7,25 +15,6 @@
     />
   </ul>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import NavigationItemView from './NavigationItemView.vue'
-import { mapRoutesToNavigationItems } from './mapRoutesToNavigationItems'
-import { exampleRoutes } from '@examples/routes'
-
-export default defineComponent({
-  name: 'NavigationView',
-  components: { NavigationItemView },
-
-  setup() {
-    const navigationItems = mapRoutesToNavigationItems(exampleRoutes)
-    return {
-      navigationItems,
-    }
-  },
-})
-</script>
 
 <style scoped lang="scss">
 .navigation {

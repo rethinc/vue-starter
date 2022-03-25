@@ -1,20 +1,14 @@
+<script setup lang="ts">
+import NavigationView from './NavigationView.vue'
+import ViewExampleIFrame from './ViewExampleIFrame.vue'
+</script>
+
 <template>
   <div class="view-examples-overview">
     <NavigationView class="navigation" />
     <ViewExampleIFrame />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import NavigationView from './NavigationView.vue'
-import ViewExampleIFrame from './ViewExampleIFrame.vue'
-
-export default defineComponent({
-  name: 'ExamplesOverview',
-  components: { ViewExampleIFrame, NavigationView },
-})
-</script>
 
 <style scoped lang="scss">
 .view-examples-overview {

@@ -1,3 +1,28 @@
+<script setup lang="ts">
+import {
+  isExampleNavigationItem,
+  isPathNavigationItem,
+  NavigationItem,
+} from './mapRoutesToNavigationItems'
+import ExampleRouterLink from './ExampleRouterLink.vue'
+
+const props = withDefaults(
+  defineProps<{ navigationItem: NavigationItem; navigationLevel?: number }>(),
+  { navigationLevel: 0 }
+)
+
+const itemPadding = {
+  'padding-left': `${props.navigationLevel * 10}px`,
+}
+const childrenNavigationLevel = props.navigationLevel + 1
+const pathNavigationItem = isPathNavigationItem(props.navigationItem)
+  ? props.navigationItem
+  : undefined
+const exampleNavigationItem = isExampleNavigationItem(props.navigationItem)
+  ? props.navigationItem
+  : undefined
+</script>
+
 <template>
   <li>
     <div v-if="pathNavigationItem" :style="itemPadding">
@@ -22,49 +47,6 @@
     </ul>
   </li>
 </template>
-
-<script lang="ts">
-import { defineComponent, PropType } from 'vue'
-import {
-  isExampleNavigationItem,
-  isPathNavigationItem,
-  NavigationItem,
-} from './mapRoutesToNavigationItems'
-import ExampleRouterLink from './ExampleRouterLink.vue'
-
-export default defineComponent({
-  name: 'NavigationItemView',
-  components: { ExampleRouterLink },
-  props: {
-    navigationItem: {
-      type: Object as PropType<NavigationItem>,
-      required: true,
-    },
-    navigationLevel: {
-      type: Number as PropType<number>,
-      default: 0,
-    },
-  },
-  setup(props) {
-    const itemPadding = {
-      'padding-left': `${props.navigationLevel * 10}px`,
-    }
-    const childrenNavigationLevel = props.navigationLevel + 1
-    const pathNavigationItem = isPathNavigationItem(props.navigationItem)
-      ? props.navigationItem
-      : undefined
-    const exampleNavigationItem = isExampleNavigationItem(props.navigationItem)
-      ? props.navigationItem
-      : undefined
-    return {
-      pathNavigationItem,
-      exampleNavigationItem,
-      itemPadding,
-      childrenNavigationLevel,
-    }
-  },
-})
-</script>
 
 <style scoped lang="scss">
 li,

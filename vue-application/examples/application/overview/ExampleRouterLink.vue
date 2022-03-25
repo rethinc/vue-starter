@@ -1,3 +1,27 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { ExampleNavigationItem } from './mapRoutesToNavigationItems'
+import { RouteLocationRaw, useRoute } from 'vue-router'
+
+const props = defineProps<{ exampleNavigationItem: ExampleNavigationItem }>()
+
+const route = useRoute()
+const routeLocation = computed(
+  (): RouteLocationRaw => ({
+    path: route.path,
+    query: {
+      exampleRoute: props.exampleNavigationItem.routerPath,
+    },
+  })
+)
+const additionalClasses = computed(() => {
+  if (route.query.exampleRoute === props.exampleNavigationItem.routerPath) {
+    return 'active'
+  }
+  return ''
+})
+</script>
+
 <template>
   <RouterLink
     :to="routeLocation"
@@ -7,39 +31,6 @@
     {{ exampleNavigationItem.name }}
   </RouterLink>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
-import { ExampleNavigationItem } from './mapRoutesToNavigationItems'
-import { RouteLocationRaw, useRoute } from 'vue-router'
-
-export default defineComponent({
-  props: {
-    exampleNavigationItem: {
-      type: Object as PropType<ExampleNavigationItem>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const route = useRoute()
-    const routeLocation = computed(
-      (): RouteLocationRaw => ({
-        path: route.path,
-        query: {
-          exampleRoute: props.exampleNavigationItem.routerPath,
-        },
-      })
-    )
-    const additionalClasses = computed(() => {
-      if (route.query.exampleRoute === props.exampleNavigationItem.routerPath) {
-        return 'active'
-      }
-      return ''
-    })
-    return { routeLocation, additionalClasses }
-  },
-})
-</script>
 
 <style scoped lang="scss">
 .router-link {
