@@ -34,5 +34,8 @@
       "files": ["*.vue","*.ts", "*.js", "*.mjs"]
     }
   ],
-  "ignorePatterns": ["node_modules", "dist", "coverage"]
+  "ignorePatterns": ["node_modules", "dist", "coverage"],
+  "settings": {
+    "import/internal-regex": "^@/"
+  }
 }
