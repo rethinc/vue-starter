@@ -4,9 +4,8 @@ import {
   NavigationGuardNext,
   RouteLocationNormalized,
 } from 'vue-router'
-
-import ExamplesOverview from './overview/ExamplesOverview.vue'
 import { exampleRoutes } from '@examples/routes'
+import ExamplesOverview from './overview/ExamplesOverview.vue'
 
 const firstExampleRoute = exampleRoutes[0]
 

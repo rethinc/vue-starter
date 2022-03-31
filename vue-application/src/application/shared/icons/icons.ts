@@ -1,5 +1,4 @@
 import Checkmark from '@/application/shared/icons/assets/svg-colorizable/checkmark.svg?raw'
-
 import BellCheckmark from '@/application/shared/icons/assets/svg-original/bell-checkmark.svg?raw'
 
 export enum IconColorizable {

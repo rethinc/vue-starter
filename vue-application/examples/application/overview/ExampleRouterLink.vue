@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ExampleNavigationItem } from './mapRoutesToNavigationItems'
 import { RouteLocationRaw, useRoute } from 'vue-router'
+import { ExampleNavigationItem } from './mapRoutesToNavigationItems'
 
 const props = defineProps<{ exampleNavigationItem: ExampleNavigationItem }>()
 

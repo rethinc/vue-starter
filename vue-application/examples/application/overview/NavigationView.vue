@@ -1,7 +1,7 @@
 <script setup lang="ts">
+import { exampleRoutes } from '@examples/routes'
 import NavigationItemView from './NavigationItemView.vue'
 import { mapRoutesToNavigationItems } from './mapRoutesToNavigationItems'
-import { exampleRoutes } from '@examples/routes'
 
 const navigationItems = mapRoutesToNavigationItems(exampleRoutes)
 </script>

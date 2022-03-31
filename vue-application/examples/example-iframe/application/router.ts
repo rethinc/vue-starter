@@ -4,9 +4,8 @@ import {
   NavigationGuardNext,
   RouteLocationNormalized,
 } from 'vue-router'
-
-import ExampleNotFound from './viewExample/ExampleNotFound.vue'
 import { exampleRoutes } from '@examples/routes'
+import ExampleNotFound from './viewExample/ExampleNotFound.vue'
 
 export const viewExamplesIFrameRouter = createRouter({
   history: createWebHistory(),
