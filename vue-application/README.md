@@ -25,14 +25,24 @@ Check code format issues
 npm run lint
 ```
 
-Automatically format code in whole project
+Fix automatically fixable format/lint issues
 ```
-npm run format
+npm run fix
+```
+
+Check typescript types
+```
+npm run check-types
 ```
 
 Run jest test runner in watch mode
 ```
 npm run test
+```
+
+Check format/lint issues, typescript types and run tests
+```
+npm run verify
 ```
 
 ### Views

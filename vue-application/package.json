@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "eslint . --fix",
-    "lint": "eslint . && npx vue-tsc --noEmit",
+    "fix": "eslint . --fix",
+    "lint": "eslint .",
+    "check-types": "npx vue-tsc --noEmit",
+    "verify": "npm run lint && npm run check-types && npm run test",
     "test": "jest",
     "generate-view-examples": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generateViewExamples",
     "generate-icons": "node --experimental-specifier-resolution=node --loader ts-node/esm ./scripts/generateIcons"
