@@ -20,6 +20,7 @@ const icon = computed<string>(() => iconByType(props.type))
   height: 100%;
 
   :deep(svg) {
+    display: block;
     width: 100%;
     height: 100%;
   }
