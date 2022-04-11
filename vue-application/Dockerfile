@@ -3,7 +3,7 @@ FROM node:17.6.0
 WORKDIR /app
 COPY ./package.json ./package.json
 COPY ./package-lock.json ./package-lock.json
-RUN npm install
+RUN npm ci
 COPY . .
 RUN npm run verify
 RUN npm run build
