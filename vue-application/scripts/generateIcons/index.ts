@@ -83,4 +83,4 @@ fs.writeFileSync(
   `
 )
 
-exec(`npx prettier --write "${iconsSourceFilePath}"`)
+exec(`npx eslint "${iconsSourceFilePath}" --fix`)
