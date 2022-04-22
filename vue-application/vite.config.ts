@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     colorizableIcons({
       colorizableIconsDirectory:
-        'application/shared/icons/assets/svg-colorizable',
+        'application/icons/assets/svg-colorizable',
     }),
     vue(),
     examples({
