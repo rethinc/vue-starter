@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconView from '@/application/shared/icons/IconView.vue'
-import { IconColorizable, IconOriginal } from '@/application/shared/icons/icons'
+import { IconColorizable, IconOriginal } from '@/application/icons/icons'
 </script>
 
 <template>

@@ -7,16 +7,16 @@ const projectRootDirectory = process.cwd()
 
 const iconColorizableDirectory = path.resolve(
   projectRootDirectory,
-  'src/application/shared/icons/assets/svg-colorizable'
+  'src/application/icons/assets/svg-colorizable'
 )
 const iconOriginalDirectory = path.resolve(
   projectRootDirectory,
-  'src/application/shared/icons/assets/svg-original'
+  'src/application/icons/assets/svg-original'
 )
 
 const iconsSourceFilePath = path.resolve(
   projectRootDirectory,
-  'src/application/shared/icons/icons.ts'
+  'src/application/icons/icons.ts'
 )
 
 interface ProcessedIcons {
@@ -47,13 +47,13 @@ const processIcons = (
 
 const processedColorizableIcons = processIcons(
   fs.readdirSync(iconColorizableDirectory),
-  '@/application/shared/icons/assets/svg-colorizable',
+  '@/application/icons/assets/svg-colorizable',
   'IconColorizable'
 )
 
 const processedOriginalIcons = processIcons(
   fs.readdirSync(iconOriginalDirectory),
-  '@/application/shared/icons/assets/svg-original',
+  '@/application/icons/assets/svg-original',
   'IconOriginal'
 )
 
