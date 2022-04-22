@@ -7,8 +7,7 @@ import examples from './plugins/vite-plugin-vue-examples'
 export default defineConfig({
   plugins: [
     colorizableIcons({
-      colorizableIconsDirectory:
-        'application/icons/assets/svg-colorizable',
+      colorizableIconsDirectory: 'application/icons/assets/svg-colorizable',
     }),
     vue(),
     examples({
