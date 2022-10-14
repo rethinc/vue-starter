@@ -4,9 +4,10 @@
 
 Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-Install node with version used in project
+Install and initialize node with version used in project
 ```
 nvm install
+npm install
 ```
 
 Run app locally in development mode
