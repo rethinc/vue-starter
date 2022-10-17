@@ -1,5 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
+import { describe, it, expect, beforeEach } from 'vitest'
 import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 
 describe('mapExampleDirectoryToRoutes', () => {

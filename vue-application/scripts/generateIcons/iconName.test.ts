@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest'
 import { iconNameFromFile } from './iconName'
 
 describe('iconName', () => {
