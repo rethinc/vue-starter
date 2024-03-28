@@ -10,20 +10,27 @@ $fontFamily: 'Source Sans Pro', sans-serif;
 
 $lineHeight: 1.44;
 
-@mixin typography-default {
-  h1, h2 {
-    font-size: $largefont;
-    font-weight: $fontWeightBold;
-  }
-  h3 {
-    font-size: $fontSize;
-    font-weight: $fontWeightBold;
-  }
-  p {
-    font-size: $fontSize;
-    font-weight: $fontWeightNormal;
-    b {
-      font-weight: $fontWeightSemiBold;
-    }
+// Default font settings
+body {
+  font-family: $fontFamily;
+  line-height: 1.5;
+}
+
+h1, h2 {
+  font-size: $largefont;
+  font-weight: $fontWeightBold;
+}
+
+h3 {
+  font-size: $fontSize;
+  font-weight: $fontWeightBold;
+}
+
+p {
+  font-size: $fontSize;
+  font-weight: $fontWeightNormal;
+
+  b {
+    font-weight: $fontWeightSemiBold;
   }
 }
