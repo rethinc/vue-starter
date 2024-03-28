@@ -8,8 +8,8 @@ import { IconColorizable, IconOriginal } from '@/application/icons/icons'
   <p>
     If you can see this you successfully installed the re:thinc vue starter
     <iconView :type="IconColorizable.Checkmark" class="style-text" />. We should
-    take a moment, maybe grab a coffee, before continuing your new adventure also
-    known as project.
+    take a moment, maybe grab a coffee, before continuing your new adventure
+    also known as project.
   </p>
   <p>
     You can now
