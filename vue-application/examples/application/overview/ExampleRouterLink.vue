@@ -35,16 +35,12 @@ const additionalClasses = computed(() => {
 <style scoped lang="scss">
 .router-link {
   text-decoration: none;
-  color: dimgrey;
+  color: lightgray;
   display: block;
   padding: 3px 0 3px 0;
 
-  &:hover {
-    color: lightblue;
-  }
-
   &.active {
-    color: darkgreen;
+    color: white;
   }
 }
 </style>
