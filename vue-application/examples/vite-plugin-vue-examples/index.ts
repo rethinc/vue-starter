@@ -1,17 +1,11 @@
 import { PluginOption, ViteDevServer } from 'vite'
 import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 
-export interface GlobalPluginConfiguration {
-  name: string
-  path: string
-}
-
 export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
   exampleFileNameSuffix: string
   exampleAppPath: string
   globalScssFile?: string
-  globalPlugins?: GlobalPluginConfiguration[]
 }
 
 export default (
@@ -26,8 +20,6 @@ export default (
   const routesId = '@examples/routes'
   const resolvedRoutesId = '\0' + routesId
   const globalScssId = '@examples/global.scss'
-  const globalPluginsId = '@examples/globalPlugins'
-  const resolvedGlobalPluginsId = '\0' + globalPluginsId
 
   return {
     name: 'vue-view-examples',
@@ -63,9 +55,6 @@ export default (
       if (id === globalScssId) {
         return globalScssId
       }
-      if (id === globalPluginsId) {
-        return resolvedGlobalPluginsId
-      }
     },
     load(id) {
       if (id === resolvedRoutesId) {
@@ -83,20 +72,6 @@ export default (
         return configuration.globalScssFile
           ? `@import '${configuration.globalScssFile}'`
           : ''
-      }
-      if (id === resolvedGlobalPluginsId) {
-        const imports: string[] = []
-        const globalPluginsArray: string[] = []
-
-        configuration.globalPlugins?.forEach((pluginConfiguration) => {
-          imports.push(
-            `import { ${pluginConfiguration.name} } from '${pluginConfiguration.path}'`
-          )
-          globalPluginsArray.push(pluginConfiguration.name)
-        })
-        return `
-          ${imports.join('\n')}
-          export const globalPlugins = [${globalPluginsArray.join(',')}]`
       }
     },
   }
