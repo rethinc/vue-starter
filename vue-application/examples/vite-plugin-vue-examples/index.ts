@@ -1,5 +1,5 @@
 import { PluginOption, ViteDevServer } from 'vite'
-import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
+import { mapExampleFilesToRoutes } from './map-example-files-to-routes'
 
 export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
