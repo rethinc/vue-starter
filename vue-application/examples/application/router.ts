@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { exampleRoutes } from '@examples/routes'
-import ExampleNotFound from './overview/ExampleNotFound.vue'
+import ExampleNotFound from './ExampleNotFound.vue'
 
 export const viewExamplesRouter = createRouter({
   history: createWebHashHistory(),
