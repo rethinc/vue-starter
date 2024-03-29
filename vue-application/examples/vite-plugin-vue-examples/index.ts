@@ -1,4 +1,3 @@
-import * as path from 'path'
 import { PluginOption, ViteDevServer } from 'vite'
 import { mapExampleFilesToRoutes } from './mapExampleFilesToRoutes'
 
