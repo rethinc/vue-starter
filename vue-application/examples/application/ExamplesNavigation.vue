@@ -29,13 +29,14 @@ const onClickToggle = () => {
 
 <style scoped lang="scss">
 .navigation {
-  position: absolute;
+  position: fixed;
   right: 0;
   bottom: 0;
   background-color: #252b30;
 
   &.showNavigation {
     top: 0;
+    width: 100%;
   }
 
   ul {

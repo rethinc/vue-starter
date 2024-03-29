@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import NavigationView from './application/NavigationView.vue'
+import ExamplesNavigation from './application/ExamplesNavigation.vue'
 </script>
 
 <template>
-  <NavigationView class="navigation" />
+  <ExamplesNavigation />
   <RouterView />
 </template>
 
