@@ -1,6 +1,6 @@
 import { mapExampleFilesToRoutes } from './map-example-files-to-routes'
 
-export const generateExampleRoutes = (
+export const generateExampleRoutesFile = (
   examplesRootPath: string,
   exampleFileNameSuffix: string
 ) => {

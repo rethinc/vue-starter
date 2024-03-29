@@ -1,5 +1,5 @@
 import { PluginOption, ViteDevServer } from 'vite'
-import { generateExampleRoutes } from './generate-example-routes'
+import { generateExampleRoutesFile } from './generate-example-routes-file'
 import { generateGlobalScssFile } from './generate-global-scss-file'
 
 export interface VueExamplesPluginConfiguration {
@@ -60,7 +60,7 @@ export default (
     load(id) {
       switch (id) {
         case resolvedRoutesId:
-          return generateExampleRoutes(
+          return generateExampleRoutesFile(
             configuration.examplesRootPath,
             configuration.exampleFileNameSuffix
           )
