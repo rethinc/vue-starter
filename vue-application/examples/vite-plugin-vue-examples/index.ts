@@ -1,3 +1,4 @@
+import * as path from 'path'
 import { PluginOption, ViteDevServer } from 'vite'
 import { generateExampleRoutesFile } from './generate-example-routes-file'
 import { generateGlobalScssFile } from './generate-global-scss-file'
@@ -12,11 +13,14 @@ export interface VueExamplesPluginConfiguration {
 export default (
   customConfiguration: Partial<VueExamplesPluginConfiguration>
 ): PluginOption => {
-  const configuration = {
-    examplesRootPath: 'src',
+  const examplesRootPath = customConfiguration.examplesRootPath
+    ? path.resolve(customConfiguration.examplesRootPath)
+    : path.resolve('src')
+  const configuration: VueExamplesPluginConfiguration = {
+    ...customConfiguration,
+    examplesRootPath,
     exampleFileNameSuffix: '.example.vue',
     exampleAppPath: '/vue-examples/',
-    ...customConfiguration,
   }
   const routesId = '@examples/routes'
   const resolvedRoutesId = '\0' + routesId
@@ -43,8 +47,8 @@ export default (
         ) {
           const module = server.moduleGraph.getModuleById(resolvedRoutesId)
           if (module) {
-            server.moduleGraph.invalidateAll()
-            server.ws.send({ type: 'full-reload' })
+            server.moduleGraph.invalidateModule(module)
+            server.hot.send({ type: 'full-reload' })
           }
         }
       })
