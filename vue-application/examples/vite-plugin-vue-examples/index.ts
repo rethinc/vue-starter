@@ -22,7 +22,7 @@ export default (
     ...customConfiguration,
     examplesRootPath,
   }
-  const routesId = '@examples/routes'
+  const routesId = 'virtual:vue-examples-routes'
   const resolvedRoutesId = '\0' + routesId
   const mainId = '/examples/main.ts'
   const resolvedMainId = '\0' + '/examples/main.ts'

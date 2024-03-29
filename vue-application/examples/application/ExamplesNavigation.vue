@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { exampleRoutes } from '@examples/routes'
+import { exampleRoutes } from 'virtual:vue-examples-routes'
 import { ref } from 'vue'
 import NavigationItemView from './NavigationItemView.vue'
 import { mapRoutesToNavigationItems } from './mapRoutesToNavigationItems'
