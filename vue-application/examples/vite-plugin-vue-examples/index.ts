@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { PluginOption, ViteDevServer } from 'vite'
 import { generateExampleRoutesFile } from './generate-example-routes-file'
-import { generateMainFile } from './generate-main-file'
+import { transformMainFile } from './transform-main-file'
 
 export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
@@ -24,11 +24,9 @@ export default (
   }
   const routesId = 'virtual:vue-examples-routes'
   const resolvedRoutesId = '\0' + routesId
-  const mainId = '/examples/main.ts'
-  const resolvedMainId = '\0' + '/examples/main.ts'
 
   return {
-    name: 'vue-view-examples',
+    name: 'vue-examples',
     configureServer: (server: ViteDevServer) => {
       server.middlewares.use((req, res, next) => {
         if (req.url && req.url.startsWith(configuration.exampleAppPath)) {
@@ -55,22 +53,23 @@ export default (
       })
     },
     resolveId(id) {
-      switch (id) {
-        case routesId:
-          return resolvedRoutesId
-        case mainId:
-          return resolvedMainId
+      if (id === routesId) {
+        return resolvedRoutesId
       }
     },
     load(id) {
-      switch (id) {
-        case resolvedRoutesId:
-          return generateExampleRoutesFile(
-            configuration.examplesRootPath,
-            configuration.exampleFileNameSuffix
-          )
-        case resolvedMainId:
-          return generateMainFile(configuration.globalScssFile)
+      if (id === resolvedRoutesId) {
+        return generateExampleRoutesFile(
+          configuration.examplesRootPath,
+          configuration.exampleFileNameSuffix
+        )
+      }
+    },
+    transform(src, id) {
+      if (id.endsWith('examples/main.ts')) {
+        return {
+          code: transformMainFile(src, configuration.globalScssFile),
+        }
       }
     },
   }
