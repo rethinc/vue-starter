@@ -10,6 +10,7 @@ export interface GlobalPluginConfiguration {
 export interface ViewExamplesPluginConfiguration {
   examplesRootPath: string
   exampleFileNameSuffix: string
+  exampleAppPath: string
   globalStyle?: string
   globalPlugins?: GlobalPluginConfiguration[]
 }
@@ -34,6 +35,18 @@ export default (
   return {
     name: 'vue-view-examples',
     configureServer: (server: ViteDevServer) => {
+      server.middlewares.use((req, res, next) => {
+        if (
+          req.url &&
+          req.url.startsWith(resolvedConfiguration.exampleAppPath)
+        ) {
+          req.url = req.url.replace(
+            new RegExp(`${resolvedConfiguration.exampleAppPath}`),
+            '/examples/'
+          )
+        }
+        next()
+      })
       server.watcher.add(resolvedConfiguration.rootExamplesPath)
       server.watcher.on('all', async (event, changedFilePath) => {
         if (
