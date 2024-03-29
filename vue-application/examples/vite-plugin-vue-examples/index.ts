@@ -1,6 +1,6 @@
 import { PluginOption, ViteDevServer } from 'vite'
-import { mapExampleFilesToRoutes } from './map-example-files-to-routes'
 import { generateExampleRoutes } from './generate-example-routes'
+import { generateGlobalScssFile } from './generate-global-scss-file'
 
 export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
@@ -64,11 +64,8 @@ export default (
             configuration.examplesRootPath,
             configuration.exampleFileNameSuffix
           )
-      }
-      if (id === globalScssId) {
-        return configuration.globalScssFile
-          ? `@import '${configuration.globalScssFile}'`
-          : ''
+        case globalScssId:
+          return generateGlobalScssFile(configuration.globalScssFile)
       }
     },
   }
