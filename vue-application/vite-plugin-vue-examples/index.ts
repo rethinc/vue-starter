@@ -24,6 +24,12 @@ export default (
   }
   const routesId = 'virtual:vue-examples-routes'
   const resolvedRoutesId = '\0' + routesId
+  const absoluteAppPath = path.join(
+    path.dirname(new URL(import.meta.url).pathname),
+    'app'
+  )
+  const relativeAppPath = path.relative(path.resolve(), absoluteAppPath)
+  const appUrlPath = `/${relativeAppPath}/`
 
   return {
     name: 'vue-examples',
@@ -32,7 +38,7 @@ export default (
         if (req.url && req.url.startsWith(configuration.exampleAppPath)) {
           req.url = req.url.replace(
             new RegExp(`${configuration.exampleAppPath}`),
-            '/examples/'
+            appUrlPath
           )
         }
         next()
@@ -66,7 +72,7 @@ export default (
       }
     },
     transform(src, id) {
-      if (id.endsWith('examples/main.ts')) {
+      if (id == `${absoluteAppPath}/main.ts`) {
         return {
           code: transformMainFile(src, configuration.globalScssFile),
         }
