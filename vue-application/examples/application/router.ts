@@ -1,35 +1,20 @@
-import {
-  createRouter,
-  createWebHistory,
-  NavigationGuardNext,
-  RouteLocationNormalized,
-} from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { exampleRoutes } from '@examples/routes'
-import ExamplesOverview from './overview/ExamplesOverview.vue'
-
-const firstExampleRoute = exampleRoutes[0]
+import ExampleNotFound from './overview/ExampleNotFound.vue'
 
 export const viewExamplesRouter = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
-      path: '/:pathMatch(.*)*',
-      component: ExamplesOverview,
-      beforeEnter: (
-        to: RouteLocationNormalized,
-        from: RouteLocationNormalized,
-        next: NavigationGuardNext
-      ) => {
-        const exampleRoute = to.query.exampleRoute
-        if (firstExampleRoute && !exampleRoute) {
-          next({
-            path: to.path,
-            query: { exampleRoute: firstExampleRoute.path },
-          })
-          return
-        }
-        next()
-      },
+      path: '',
+      redirect: exampleRoutes.length > 0 ? exampleRoutes[0].path : '',
+      children: [
+        ...exampleRoutes,
+        {
+          path: '/:pathMatch(.*)*',
+          component: ExampleNotFound,
+        },
+      ],
     },
   ],
 })

@@ -1,33 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-import { RouteLocationRaw, useRoute } from 'vue-router'
 import { ExampleNavigationItem } from './mapRoutesToNavigationItems'
 
-const props = defineProps<{ exampleNavigationItem: ExampleNavigationItem }>()
-
-const route = useRoute()
-const routeLocation = computed(
-  (): RouteLocationRaw => ({
-    path: route.path,
-    query: {
-      exampleRoute: props.exampleNavigationItem.routerPath,
-    },
-  })
-)
-const additionalClasses = computed(() => {
-  if (route.query.exampleRoute === props.exampleNavigationItem.routerPath) {
-    return 'active'
-  }
-  return ''
-})
+defineProps<{ exampleNavigationItem: ExampleNavigationItem }>()
 </script>
 
 <template>
-  <RouterLink
-    :to="routeLocation"
-    class="router-link"
-    :class="additionalClasses"
-  >
+  <RouterLink :to="exampleNavigationItem.routerPath" class="router-link">
     {{ exampleNavigationItem.name }}
   </RouterLink>
 </template>
@@ -35,12 +13,12 @@ const additionalClasses = computed(() => {
 <style scoped lang="scss">
 .router-link {
   text-decoration: none;
-  color: lightgray;
+  color: grey;
   display: block;
   padding: 3px 0 3px 0;
+}
 
-  &.active {
-    color: white;
-  }
+.router-link-active {
+  color: red;
 }
 </style>
