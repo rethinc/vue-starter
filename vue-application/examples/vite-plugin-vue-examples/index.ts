@@ -55,7 +55,6 @@ export default (
       })
     },
     resolveId(id) {
-      console.log(id)
       switch (id) {
         case routesId:
           return resolvedRoutesId
