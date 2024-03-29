@@ -29,6 +29,7 @@ const onClickToggle = () => {
 
 <style scoped lang="scss">
 .navigation {
+  z-index: calc(9e999);
   position: fixed;
   right: 0;
   bottom: 0;
