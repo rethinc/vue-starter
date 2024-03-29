@@ -1,5 +1,6 @@
 import { PluginOption, ViteDevServer } from 'vite'
 import { mapExampleFilesToRoutes } from './map-example-files-to-routes'
+import { generateExampleRoutes } from './generate-example-routes'
 
 export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
@@ -57,16 +58,12 @@ export default (
       }
     },
     load(id) {
-      if (id === resolvedRoutesId) {
-        const routeFile = mapExampleFilesToRoutes(
-          configuration.examplesRootPath,
-          configuration.exampleFileNameSuffix
-        )
-        return `
-          ${routeFile.imports.join('\n')}
-          export const exampleRoutes = [
-            ${routeFile.routes.join(',\n')}
-          ]`
+      switch (id) {
+        case resolvedRoutesId:
+          return generateExampleRoutes(
+            configuration.examplesRootPath,
+            configuration.exampleFileNameSuffix
+          )
       }
       if (id === globalScssId) {
         return configuration.globalScssFile
