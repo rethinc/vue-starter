@@ -50,11 +50,11 @@ export default (
       })
     },
     resolveId(id) {
-      if (id === routesId) {
-        return resolvedRoutesId
-      }
-      if (id === globalScssId) {
-        return globalScssId
+      switch (id) {
+        case routesId:
+          return resolvedRoutesId
+        case globalScssId:
+          return globalScssId
       }
     },
     load(id) {
