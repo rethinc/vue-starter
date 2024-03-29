@@ -10,7 +10,7 @@ export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
   exampleFileNameSuffix: string
   exampleAppPath: string
-  globalStyle?: string
+  globalScssFile?: string
   globalPlugins?: GlobalPluginConfiguration[]
 }
 
@@ -80,7 +80,9 @@ export default (
           ]`
       }
       if (id === globalScssId) {
-        return configuration.globalStyle
+        return configuration.globalScssFile
+          ? `@import '${configuration.globalScssFile}'`
+          : ''
       }
       if (id === resolvedGlobalPluginsId) {
         const imports: string[] = []

@@ -15,9 +15,7 @@ export default defineConfig({
       examplesRootPath: 'src/application',
       exampleFileNameSuffix: '.example.vue',
       exampleAppPath: '/vue-examples/',
-      globalStyle: `
-        @import 'src/assets/styles/global.scss';
-      `,
+      globalScssFile: '@/assets/styles/global.scss',
     }),
   ],
   resolve: {
