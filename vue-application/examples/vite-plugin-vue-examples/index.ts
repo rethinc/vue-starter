@@ -7,7 +7,7 @@ export interface GlobalPluginConfiguration {
   path: string
 }
 
-export interface ViewExamplesPluginConfiguration {
+export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
   exampleFileNameSuffix: string
   exampleAppPath: string
@@ -16,15 +16,13 @@ export interface ViewExamplesPluginConfiguration {
 }
 
 export default (
-  configuration: ViewExamplesPluginConfiguration
+  customConfiguration: Partial<VueExamplesPluginConfiguration>
 ): PluginOption => {
-  const resolvedConfiguration = {
-    ...configuration,
-    rootExamplesPath: path.isAbsolute(configuration.examplesRootPath)
-      ? configuration.examplesRootPath
-      : path.resolve(configuration.examplesRootPath),
-    globalStyle: configuration.globalStyle ?? '',
-    globalPlugins: configuration.globalPlugins ?? [],
+  const configuration = {
+    examplesRootPath: 'src',
+    exampleFileNameSuffix: '.example.vue',
+    exampleAppPath: '/vue-examples/',
+    ...customConfiguration,
   }
   const routesId = '@examples/routes'
   const resolvedRoutesId = '\0' + routesId
@@ -36,22 +34,19 @@ export default (
     name: 'vue-view-examples',
     configureServer: (server: ViteDevServer) => {
       server.middlewares.use((req, res, next) => {
-        if (
-          req.url &&
-          req.url.startsWith(resolvedConfiguration.exampleAppPath)
-        ) {
+        if (req.url && req.url.startsWith(configuration.exampleAppPath)) {
           req.url = req.url.replace(
-            new RegExp(`${resolvedConfiguration.exampleAppPath}`),
+            new RegExp(`${configuration.exampleAppPath}`),
             '/examples/'
           )
         }
         next()
       })
-      server.watcher.add(resolvedConfiguration.rootExamplesPath)
+      server.watcher.add(configuration.examplesRootPath)
       server.watcher.on('all', async (event, changedFilePath) => {
         if (
           ['add', 'unlink'].includes(event) &&
-          changedFilePath.startsWith(resolvedConfiguration.rootExamplesPath) &&
+          changedFilePath.startsWith(configuration.examplesRootPath) &&
           changedFilePath.endsWith(configuration.exampleFileNameSuffix)
         ) {
           const module = server.moduleGraph.getModuleById(resolvedRoutesId)
@@ -76,7 +71,7 @@ export default (
     load(id) {
       if (id === resolvedRoutesId) {
         const routeFile = mapExampleFilesToRoutes(
-          resolvedConfiguration.rootExamplesPath,
+          configuration.examplesRootPath,
           configuration.exampleFileNameSuffix
         )
         return `
@@ -86,19 +81,18 @@ export default (
           ]`
       }
       if (id === globalScssId) {
-        return resolvedConfiguration.globalStyle
+        return configuration.globalStyle
       }
       if (id === resolvedGlobalPluginsId) {
         const imports: string[] = []
         const globalPluginsArray: string[] = []
 
-        resolvedConfiguration.globalPlugins.forEach((pluginConfiguration) => {
+        configuration.globalPlugins?.forEach((pluginConfiguration) => {
           imports.push(
             `import { ${pluginConfiguration.name} } from '${pluginConfiguration.path}'`
           )
           globalPluginsArray.push(pluginConfiguration.name)
         })
-
         return `
           ${imports.join('\n')}
           export const globalPlugins = [${globalPluginsArray.join(',')}]`
