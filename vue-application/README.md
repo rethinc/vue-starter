@@ -59,7 +59,7 @@ To view the examples run the dev server
 npm run dev
 ```
 and open browser at (**trailing '/' is important**)
-[http://localhost:3000/vue-examples/](http://localhost:3000/examples/)
+[http://localhost:3000/examples/](http://localhost:3000/examples/)
 
 ### SVG Icons
 
