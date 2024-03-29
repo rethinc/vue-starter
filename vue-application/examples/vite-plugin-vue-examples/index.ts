@@ -1,7 +1,7 @@
 import * as path from 'path'
 import { PluginOption, ViteDevServer } from 'vite'
 import { generateExampleRoutesFile } from './generate-example-routes-file'
-import { generateGlobalScssFile } from './generate-global-scss-file'
+import { generateMainFile } from './generate-main-file'
 
 export interface VueExamplesPluginConfiguration {
   examplesRootPath: string
@@ -17,14 +17,15 @@ export default (
     ? path.resolve(customConfiguration.examplesRootPath)
     : path.resolve('src')
   const configuration: VueExamplesPluginConfiguration = {
-    ...customConfiguration,
-    examplesRootPath,
     exampleFileNameSuffix: '.example.vue',
     exampleAppPath: '/vue-examples/',
+    ...customConfiguration,
+    examplesRootPath,
   }
   const routesId = '@examples/routes'
   const resolvedRoutesId = '\0' + routesId
-  const globalScssId = '@examples/global.scss'
+  const mainId = '/examples/main.ts'
+  const resolvedMainId = '\0' + '/examples/main.ts'
 
   return {
     name: 'vue-view-examples',
@@ -54,11 +55,12 @@ export default (
       })
     },
     resolveId(id) {
+      console.log(id)
       switch (id) {
         case routesId:
           return resolvedRoutesId
-        case globalScssId:
-          return globalScssId
+        case mainId:
+          return resolvedMainId
       }
     },
     load(id) {
@@ -68,8 +70,8 @@ export default (
             configuration.examplesRootPath,
             configuration.exampleFileNameSuffix
           )
-        case globalScssId:
-          return generateGlobalScssFile(configuration.globalScssFile)
+        case resolvedMainId:
+          return generateMainFile(configuration.globalScssFile)
       }
     },
   }
