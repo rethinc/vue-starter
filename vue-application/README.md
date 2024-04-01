@@ -1,9 +1,5 @@
 # {{productName}}
 
-## Current Issues
-
-* node dependency in packages.json "@types/node": "18.8.0" is used as workaround for this [Bug](https://github.com/vuejs/core/pull/6855)
-
 ## Development
 
 Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)
