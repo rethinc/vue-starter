@@ -40,7 +40,7 @@ Check typescript types
 npm run check-types
 ```
 
-Run jest test runner in watch mode
+Run vitest test runner in watch mode
 ```
 npm run test
 ```
