@@ -2,8 +2,8 @@
 import * as path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueExamples from 'vite-plugin-vue-examples'
 import colorizableIcons from './plugins/vite-plugin-colorizable-icons'
-import vueExamples from './vite-plugin-vue-examples'
 
 export default defineConfig({
   plugins: [
@@ -12,10 +12,9 @@ export default defineConfig({
     }),
     vue(),
     vueExamples({
-      examplesRootPath: 'src/application',
       exampleFileNameSuffix: '.example.vue',
-      exampleAppPath: '/examples/',
-      globalScssFile: '@/assets/styles/global.scss',
+      examplesAppPath: '/examples/',
+      globalStylesheetPaths: ['@/assets/styles/global.scss'],
     }),
   ],
   resolve: {
