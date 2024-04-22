@@ -12,6 +12,5 @@ Make sure node with version >= 17.6.0 is installed on your system. You can use n
 curl https://raw.githubusercontent.com/rethinc/vue-starter/main/setup/install-remotly.sh | bash -s <product-name>
 ```
 
-;
 ## Development
 Changes to the starter app can be done directly in the `./vue-application` folder.
