@@ -49,10 +49,7 @@ const firstOriginalIcon = computed((): IconOriginal => {
       class="icon-example"
     />
   </div>
-  <button
-    class="change-color-button"
-    @click.prevent="changeColor"
-  >
+  <button class="change-color-button" @click.prevent="changeColor">
     Change Color
   </button>
 
@@ -62,10 +59,7 @@ const firstOriginalIcon = computed((): IconOriginal => {
   <h3>default</h3>
   <p>Sizes can be defined on icon element or its parent</p>
   <div style="display: flex">
-    <IconView
-      :type="firstOriginalIcon"
-      style="width: 200px; height: 200px"
-    />
+    <IconView :type="firstOriginalIcon" style="width: 200px; height: 200px" />
 
     <div style="width: 200px; height: 200px; border: 1px solid green">
       <IconView :type="firstOriginalIcon" />
@@ -75,26 +69,14 @@ const firstOriginalIcon = computed((): IconOriginal => {
   <h3>style-text</h3>
   <p>Sizes will be adapted by current font-size value of parent element</p>
   <p class="text-example">
-    <IconView
-      :type="firstColorizableIcon"
-      class="style-text"
-    />
+    <IconView :type="firstColorizableIcon" class="style-text" />
     sed do eiusmod tempor incididunt ut labore et dolore
-    <IconView
-      :type="firstOriginalIcon"
-      class="style-text"
-    /> magna aliqua.
+    <IconView :type="firstOriginalIcon" class="style-text" /> magna aliqua.
   </p>
   <p class="text-example-larger">
-    <IconView
-      :type="firstColorizableIcon"
-      class="style-text"
-    />
+    <IconView :type="firstColorizableIcon" class="style-text" />
     sed do eiusmod tempor incididunt ut labore et dolore
-    <IconView
-      :type="firstOriginalIcon"
-      class="style-text"
-    /> magna aliqua.
+    <IconView :type="firstOriginalIcon" class="style-text" /> magna aliqua.
   </p>
 </template>
 
