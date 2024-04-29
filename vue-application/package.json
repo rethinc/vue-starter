@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "fix-lint": "eslint . --fix",
+    "fix-lint-errors": "eslint . --fix",
     "check-types": "npx vue-tsc --noEmit",
     "verify": "npm run lint && npm run check-types && npm run test",
     "test": "vitest run",
