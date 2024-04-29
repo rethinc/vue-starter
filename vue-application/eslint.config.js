@@ -21,9 +21,6 @@ export default typescriptEslint.config(
     languageOptions: {
       parserOptions: {
         parser: typescriptEslint.parser,
-        project: './tsconfig.json',
-        extraFileExtensions: ['.vue'],
-        sourceType: 'module',
       },
     },
   },
