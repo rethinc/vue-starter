@@ -1,18 +1,18 @@
-import js from "@eslint/js";
-import typescript from "typescript-eslint";
-import vue from "eslint-plugin-vue";
+import eslintJs from "@eslint/js";
+import typescriptEslint from "typescript-eslint";
+import eslintPluginVue from "eslint-plugin-vue";
 
-export default typescript.config(
-    js.configs.recommended,
-    ...typescript.configs.recommended,
-    ...vue.configs['flat/recommended'],
+export default typescriptEslint.config(
+    eslintJs.configs.recommended,
+    ...typescriptEslint.configs.recommended,
+    ...eslintPluginVue.configs['flat/recommended'],
     {
         plugins: {
-            'typescript-eslint': typescript.plugin,
+            'typescript-eslint': typescriptEslint.plugin,
         },
         languageOptions: {
             parserOptions: {
-                parser: typescript.parser,
+                parser: typescriptEslint.parser,
                 project: './tsconfig.json',
                 extraFileExtensions: ['.vue'],
                 sourceType: 'module',
