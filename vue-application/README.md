@@ -68,14 +68,14 @@ npm run generate-icons
 
 ### Dependencies
 
-Check for updated dependencies
+Check updates for package in package.json
 ```
-npx npm-check-updates
+npm run check-dependencies
 ```
 
-Update version in package.json
+Update all package versions in package.json
 ```
-npx npm-check-updates -u
+npm run update-dependencies
 ```
 
 Updated modules and package-lock file
