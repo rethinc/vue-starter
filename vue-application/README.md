@@ -1,5 +1,8 @@
 # {{productName}}
 
+## Issues
+- Eslint package can't be updated to latest '9.x.x' version, because the package 'typescript-eslint' has eslint 8.56.x as a peer dependency. For a fresh install downgrade eslint to ^8.56.0" to get a working application again.
+
 ## Development
 
 Install nvm [https://github.com/nvm-sh/nvm#installing-and-updating](https://github.com/nvm-sh/nvm#installing-and-updating)

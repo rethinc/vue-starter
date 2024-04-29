@@ -10,8 +10,12 @@ const icon = computed<string>(() => iconByType(props.type))
 </script>
 
 <template>
-  <!-- eslint-disable-next-line vue/no-v-html -->
-  <div v-if="icon" class="icon" v-html="icon" />
+  <!-- eslint-disable vue/no-v-html -->
+  <div
+    v-if="icon"
+    class="icon"
+    v-html="icon"
+  />
 </template>
 
 <style lang="scss" scoped>
