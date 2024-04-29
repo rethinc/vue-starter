@@ -1,6 +1,7 @@
+import { exec } from 'child_process'
 import * as fs from 'fs'
 import * as path from 'path'
-import { exec } from 'child_process'
+
 import { iconNameFromFile } from './iconName'
 
 const projectRootDirectory = process.cwd()

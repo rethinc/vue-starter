@@ -1,9 +1,9 @@
 import { readFileSync } from 'fs'
-import { PluginOption } from 'vite'
 // TODO: Create typescript .d.ts for svgo file because npm libray @types/svgo does not support the latest version of svgo:
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import * as svgo from 'svgo'
+import { PluginOption } from 'vite'
 
 export interface ColorizableIconsPluginConfiguration {
   colorizableIconsDirectory: string

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import IconView from './IconView.vue'
+
 import { IconColorizable, IconOriginal } from './icons'
+import IconView from './IconView.vue'
 
 const colors = ['#F00', '#0F0', '#00F']
 let currentColorIndex = 0

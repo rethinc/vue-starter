@@ -31,7 +31,7 @@ npm run lint
 
 Fix automatically fixable format/lint issues
 ```
-npm run fix
+npm run fix-lint
 ```
 
 Check typescript types
