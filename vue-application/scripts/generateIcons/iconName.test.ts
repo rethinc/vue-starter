@@ -17,7 +17,7 @@ describe('iconName', () => {
         const iconName = iconNameFromFile(fileName)
 
         expect(iconName).toBe(expectedIconName)
-      }
+      },
     )
   })
 })

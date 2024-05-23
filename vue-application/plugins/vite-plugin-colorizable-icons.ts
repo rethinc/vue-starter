@@ -10,15 +10,15 @@ export interface ColorizableIconsPluginConfiguration {
 }
 
 export default (
-  configuration: ColorizableIconsPluginConfiguration
+  configuration: ColorizableIconsPluginConfiguration,
 ): PluginOption => {
   const escapedColorizableIconsDirectory =
     configuration.colorizableIconsDirectory.replace(
       /[.*+?^${}()|[\]\\]/g,
-      '\\$&'
+      '\\$&',
     )
   const fileMatch = new RegExp(
-    `${escapedColorizableIconsDirectory}.*\\.svg\\?raw$`
+    `${escapedColorizableIconsDirectory}.*\\.svg\\?raw$`,
   )
 
   return {

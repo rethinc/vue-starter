@@ -27,5 +27,5 @@ export default typescriptEslint.config(
   {
     ignores: ['dist/*'],
   },
-  eslintPluginPrettierRecommended
+  eslintPluginPrettierRecommended,
 )

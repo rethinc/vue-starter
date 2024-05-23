@@ -8,16 +8,16 @@ const projectRootDirectory = process.cwd()
 
 const iconColorizableDirectory = path.resolve(
   projectRootDirectory,
-  'src/application/icons/assets/svg-colorizable'
+  'src/application/icons/assets/svg-colorizable',
 )
 const iconOriginalDirectory = path.resolve(
   projectRootDirectory,
-  'src/application/icons/assets/svg-original'
+  'src/application/icons/assets/svg-original',
 )
 
 const iconsSourceFilePath = path.resolve(
   projectRootDirectory,
-  'src/application/icons/icons.ts'
+  'src/application/icons/icons.ts',
 )
 
 interface ProcessedIcons {
@@ -29,7 +29,7 @@ interface ProcessedIcons {
 const processIcons = (
   files: string[],
   importPath: string,
-  enumName: string
+  enumName: string,
 ): ProcessedIcons => {
   let importContent = ''
   let enumContent = ''
@@ -49,13 +49,13 @@ const processIcons = (
 const processedColorizableIcons = processIcons(
   fs.readdirSync(iconColorizableDirectory),
   '@/application/icons/assets/svg-colorizable',
-  'IconColorizable'
+  'IconColorizable',
 )
 
 const processedOriginalIcons = processIcons(
   fs.readdirSync(iconOriginalDirectory),
   '@/application/icons/assets/svg-original',
-  'IconOriginal'
+  'IconOriginal',
 )
 
 fs.mkdirSync(path.dirname(iconsSourceFilePath), { recursive: true })
@@ -81,7 +81,7 @@ fs.writeFileSync(
         ${processedOriginalIcons.switchContent}    
      }
     }
-  `
+  `,
 )
 
 exec(`npx eslint "${iconsSourceFilePath}" --fix`)
